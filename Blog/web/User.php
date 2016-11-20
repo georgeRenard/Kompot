@@ -28,7 +28,7 @@ class User
     }
 
     
-    private function convertUserData($email,$name,$password)
+    private function convertUserData($email,$name,$password,$confirmPassword)
     {
         
        #Name Extraction / No HTML TAGS / No Special HTML Chars
@@ -45,11 +45,6 @@ class User
        $pass = trim($_POST['password']);
        $pass = strip_tags($pass);
        $pass = htmlspecialchars($pass);
-        
-       #Confirm Password Extraction / No HTML TAGS / No Special HTML Chars
-       $confirmPassword = trim($_POST['confirmPassword']);
-       $confirmPassword = strip_tags($confirmPassword);
-       $confirmPassword = htmlspecialchars($confirmPassword);
         
     }
     
@@ -83,17 +78,20 @@ class User
         $query = "SELECT email,password,name FROM users WHERE email = '$email'";
        
         $result = $this->dbQuery($query);
-        if ((!empty($result))&&($result['password'] == $password))
+        $dbr = $result['0'];
+        
+        $doPasswordsMatch = $this->arePasswordsEqual($password,$dbr['password']);
+        
+        if (!empty($dbr) && $doPasswordsMatch)
         {   
-            $_SESSION['user']=$result['name'];
+            $_SESSION['user'] = $dbr['name'];
             unset($email);
             unset($password);
             header("Location: ../../index.php");
             exit;
             
         }
-            
-    
+        
     
     }
         
@@ -127,24 +125,24 @@ class User
         
     }
     
-    public function isPasswordValid($password){
+    public function isPasswordValid($password,$confirmPassword=""){
         
        #String Validation [Password];
         
        $error = false;
        $passwordError = '';
         
-       if(empty($pass)){
+       if(empty($password)){
            
            $error = true;
            $passwordError = "Please enter password.";
            
-       }else if(strlen($pass) < 6){
+       }else if(strlen($password) < 6){
            
            $error = true;
            $passwordError = "Password must have atleast 6 characters.";
            
-       }else if($pass != $confirmPassword){
+       }else if(($confirmPassword != "") && (!arePasswordsEqual($password,$confirmPassword))){
            
            $error = true;
            $passwordError = "Passwords do not match";
@@ -152,6 +150,13 @@ class User
        }
         
        return array('errorMsg' => $passwordError, 'hasError' => $error);
+        
+    }
+    
+    private function arePasswordsEqual($password,$confirmPassword)
+    {
+        
+        return $password == $confirmPassword;
         
     }
     

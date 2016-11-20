@@ -14,13 +14,14 @@
        #DB Prerequisits
        $name = $_POST['name'];
        $password = $_POST['password'];
+       $confirmPassword = $_POST['confirmPassword'];
        $email = $_POST['email'];
        $gender = $_POST['gender'];
        $country = $_POST['country'];
         
        $user = new User($email,$password,$name);  
        $nameCallBack = $user->isNameValid($name);
-       $passwordCallBack = $user->isPasswordValid($password);
+       $passwordCallBack = $user->isPasswordValid($password,$confirmPassword);
        $emailCallBack = $user->isEmailValid($email);
         
         

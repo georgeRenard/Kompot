@@ -10,6 +10,7 @@
 
     if(isset($_POST['btn-submit']))
     {
+        
         $email = $_POST['email'];
         $password = $_POST['password'];
         
@@ -22,26 +23,17 @@
         $password = htmlspecialchars($password);
         
         $user = new User ($email,$password);
-        $emailCallBack = $user->isEmailValid($email);
-        $passwordCallBack = $user->isPasswordValid($password);
-      
+        $passwordCallBack = $user->isPasswordValid($password);  
         
-        if(!$emailCallBack['hasError']&&!$passwordCallBack['hasError'])
+        if(filter_var($email,FILTER_VALIDATE_EMAIL) &&!$passwordCallBack['hasError'])
         {
             $user->loginValidation($email,$password);
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
+
+
+
 ?>     
         
         
