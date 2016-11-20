@@ -18,7 +18,7 @@
        $gender = $_POST['gender'];
        $country = $_POST['country'];
         
-       $user = new User($email,$name,$password);  
+       $user = new User($email,$password,$name);  
        $nameCallBack = $user->isNameValid($name);
        $passwordCallBack = $user->isPasswordValid($password);
        $emailCallBack = $user->isEmailValid($email);

@@ -8,7 +8,7 @@ class User
     private $name;
     private $password;
     
-    public function __construct($email,$name,$password){
+    public function __construct($email,$password,$name=""){
         
         $this->email = $email;
         $this->password = $password;
@@ -75,7 +75,33 @@ class User
            
     }
     
-    public function isNameValid($name){
+    public function loginValidation($email,$password)
+    {
+        $email = SQLite3::escapeString($this->email);
+        $password = SQLite3::escapeString($this->password);
+        $password = hash('sha256',$password);
+        $query = "SELECT email,password,name FROM users WHERE email = '$email'";
+       
+        $result = $this->dbQuery($query);
+        if ((!empty($result))&&($result['password'] == $password))
+        {   
+            $_SESSION['user']=$result['name'];
+            unset($email);
+            unset($password);
+            header("Location: ../../index.php");
+            exit;
+            
+        }
+            
+    
+    
+    }
+        
+        
+        
+    
+    public function isNameValid($name)
+    {
     
        $error = false;
        $nameError = '';
