@@ -2,11 +2,10 @@
 
 class session
 {
-    /*
+    
     public function __construct(){
-        self::check_session();
+        self::start();
     }
-    */
     
  
 	public static function start($shout = "mute"){
@@ -20,5 +19,16 @@ class session
 			}	
 		}else{	if ($shout !== "mute"){echo "Session was already started!!!<br />";}	}
 	}
-}
     
+    public static function checkLogin(){
+        
+        self::start();
+        if(isset($_SESSION['user']) != ""){
+       
+            header("Location: index.php");
+       
+        }
+        
+    }
+    
+}
