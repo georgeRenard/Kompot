@@ -27,12 +27,11 @@
         <title>My Account</title>
 
         <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
-        <link type="text/css" rel="stylesheet" href="../css/callbacks.css">
         <link type="text/css" rel="stylesheet" href="../css/page.css">
         <link type="text/css" rel="stylesheet" href="../css/navbar.css">
 
-        <script type="text/jscript" href="../scripts/bootstrap.js"></script>
-        <script type="text/jscript" href="../scripts/jquery-3.1.1.js"></script>
+        <script type="text/javascript" src="../scripts/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="../scripts/bootstrap.js"></script>
 
     </head>
 
@@ -45,11 +44,12 @@
         </header>
 
         <main>
-           <div class="wraper">
-            <nav id="sidebar" class="navbar navbar-inverse sidebar navigation" role="navigation">
-                <div class="container-fluid">
+            <div class="wraper">
+                <nav id="sidebar" class="navbar-inverse sidebar navigation" role="navigation">
                     <div class="navbar-header">
-                        <legend><?=$user['name']?></legend>
+                        <legend>
+                            <?=$user['name']?>
+                        </legend>
                     </div>
                     <div class="navbar-body">
                         <ul class="nav navbar-nav">
@@ -62,40 +62,39 @@
 
                         </ul>
                     </div>
-                    <div id="sidebar.btn" class="navbar-btn">
+                    <div id="sidebar-btn" class="navbar-btn">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
-                    
+
                     <!-- Click Event: SideBar Toggle:Visible/Hidden -->
-                    <script>
-                        
-                        $(document).ready(function(){
-                            
-                            $('#sidebar.btn').click(function(){
-                                $('#sidebar').toggleClass('visible'); 
-                            })
-                                              
-                        })
-                        
+                    <script type="text/javascript" src="../scripts/jquery-3.1.1.min.js">
+
+                        $(document).ready(function() {
+
+                            j$('#sidebar-btn').click(function() {
+                                j$('#sidebar').toggleClass('visible');
+                            });
+
+                        });
+
                     </script>
-                </div>
-            </nav>
+                </nav>
             </div>
-            
+
             <div class="profileWraper">
-                
+
                 <div>
-                    
+
                     <fieldset>
-                        
-                        
-                        
+
+
+
                     </fieldset>
-                    
+
                 </div>
-                
+
             </div>
 
         </main>
@@ -105,6 +104,7 @@
 
 
         </footer>
+
 
     </body>
 
