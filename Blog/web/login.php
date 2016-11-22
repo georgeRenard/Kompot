@@ -27,7 +27,16 @@
         
         if(filter_var($email,FILTER_VALIDATE_EMAIL) &&!$passwordCallBack['hasError'])
         {
-            $user->loginValidation($email,$password);
+            $result = $user->loginValidation($email,$password);
+            if(is_int($result)){
+                
+                #$user->addToLogs();   /* Adding some data to the logs table. */
+                $_SESSION['user'] = $result;
+                header("Location: home.php");
+                exit;
+            }
+            
+            echo "Incorrect name or password. Please, try again.";
         }
         
     }

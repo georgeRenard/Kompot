@@ -31,4 +31,15 @@ class session
         
     }
     
+    public static function redirectIfNotUser(){
+        
+        self::start();
+        if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')){
+
+            header ("Location: login.php");
+
+        }
+    }
+    
+    
 }

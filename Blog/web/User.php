@@ -65,7 +65,7 @@ class User
        $timestamp = new DateTime();
        $timestamp = date_format($timestamp,'Y-m-d T H:i:s');
         
-       $query = "INSERT INTO users(name,password,email,register) VALUES('$name','$password','$email','$timestamp')";
+       $query = "INSERT OR IGNORE INTO users(name,password,email,register) VALUES('$name','$password','$email','$timestamp')";
        $this->dbQuery($query);
            
     }
@@ -75,7 +75,7 @@ class User
         $email = SQLite3::escapeString($this->email);
         $password = SQLite3::escapeString($this->password);
         $password = hash('sha256',$password);
-        $query = "SELECT email,password,name FROM users WHERE email = '$email'";
+        $query = "SELECT id,email,password,name FROM users WHERE email = '$email'";
        
         $result = $this->dbQuery($query);
         $dbr = $result['0'];
@@ -84,11 +84,12 @@ class User
         
         if (!empty($dbr) && $doPasswordsMatch)
         {   
-            $_SESSION['user'] = $dbr['name'];
             unset($email);
             unset($password);
-            header("Location: ../../index.php");
-            exit;
+            return $dbr['id'];
+        }else{
+            
+            return false;
             
         }
         

@@ -1,7 +1,8 @@
 <?php date_default_timezone_set("Europe/Sofia");
+    require_once('session.php');
+    $session = new session();
 
-    var_dump($_SESSION['user']);
-    
+
 ?>
     <!DOCTYPE html>
     <html>
@@ -31,13 +32,17 @@
 
         </header>
         <main>
-            <a href="Blog/web/register.php">Register</a>
+            <a href="logOut.php">Log Out</a>
             <br>
-            <a href="Blog/web/login.php">Log In</a>
+            <a href="#">Upload</a>
+            <br>
+            <a href="userAccount.php">My Profile</a>
         </main>
         
         <footer>
-            <p>We do not own any of the rights regarding the music we post. It's only for entertainment purposes! Joro L,Paco K, Jujo P</p>
+        
+            
+            
         </footer>
         
     </body>
