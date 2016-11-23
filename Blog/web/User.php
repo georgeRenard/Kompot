@@ -1,5 +1,6 @@
 <?php
 require_once('class.sqlite3.inc.php');
+require_once('DataRetriever.php');
 
 class User
 {
@@ -7,12 +8,18 @@ class User
     private $email;
     private $name;
     private $password;
-    
-    public function __construct($email,$password,$name=""){
+    private $gender = "";
+    private $country = "";
+    private $genre = "";
+        
+    public function __construct($email,$password,$name="",$gender,$country,$genre){
         
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
+        $this->gender = $gender;
+        $this->country = $country;
+        $this->genre = $genre;
         
     }
     
@@ -66,7 +73,13 @@ class User
        $timestamp = date_format($timestamp,'Y-m-d T H:i:s');
         
        $query = "INSERT OR IGNORE INTO users(name,password,email,register) VALUES('$name','$password','$email','$timestamp')";
-       $this->dbQuery($query);
+       $result = $this->dbQuery($query);
+       
+       if(!empty($result)){
+           
+           $this->registerOptionalData($email,$this->gender,$this->country,$this->genre);
+           
+       }
            
     }
     
@@ -94,6 +107,24 @@ class User
         }
         
     
+    }
+    
+    
+    private function registerOptionalData($email,$gender,$country,$genre)
+    {
+        
+        $id = DataRetriever::getUserId($email);
+        $defaultImageUrl = "../../Default-Profile-Picture.jpg";
+        $query = "INSERT OR IGNORE INTO userOptionalData(id,gender,country,genre,imageUrl) VALUES ('$id','$gender','$country','$genre')";
+        
+        $result = $this->dbQuery($query);
+        if(!empty($result))
+        {
+            
+            return;
+            
+        }
+            
     }
         
         

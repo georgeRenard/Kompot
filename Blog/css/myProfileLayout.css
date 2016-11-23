@@ -1,0 +1,71 @@
+*{box-sizing: border-box;}
+
+body {
+    
+    width: 100%;
+    min-width: 320px;
+    max-width: 1200px;
+    margin: 0;
+    display: grid;
+    background-color: #EDEDED;
+    
+}
+.container-fluid {
+  
+    width: 100%;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    height: 100%;
+
+    
+}
+    
+
+.navColumn {
+    
+    width: 23%;
+    
+    
+}
+
+.userDataColumn {
+    
+    width: 77%;
+    float: right;
+    height: 100%;
+    
+}
+
+.image-container {
+    
+    display:block;
+    top: 104px;
+    float: left;
+    position: absolute;
+    border: 1px solid #222222;
+    overflow: auto;
+    
+}
+
+.form-container {
+    
+    top: 300px;
+    padding-left: 200px;
+    width: 160px;
+    
+}
+
+.form-horizontal {
+    
+    top: 300px;
+    padding-top: 310px;
+    
+}
+
+@font-face {
+    font-family: "OstrichSans";
+    src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);
+}

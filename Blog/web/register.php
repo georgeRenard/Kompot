@@ -38,6 +38,7 @@
                unset($name);
                unset($email);
                unset($pass);
+               unset($user);
                
                header("Location: ../../index.php");
                exit();

@@ -6,7 +6,6 @@ nav {
     font-size: 20px;
     text-align: center;
 }
-
 .main .row {
     padding: 0;
     margin: 0;
@@ -20,12 +19,12 @@ nav.sidebar.navbar {
 nav.sidebar .navbar-nav > li {
     border-bottom: 1px #e5e5e5 solid;
 }
-
-nav.sidebar .navbar-nav > li:hover {
-    background-color: azure;
-    opacity: 0.5;
+nav.sidebar .navbar-nav > li > a:hover {
+    background-color: lightgrey;
+    color: #2C2C2C;
+    font-weight: bold;
+    
 }
-
 nav.sidebar .navbar-nav > li: first-child {
     border-top: 1px #e5e5e5 solid;
 }
@@ -34,6 +33,7 @@ nav.sidebar nav.sidebar .container-fluid {
 }
 
 /* Navbar Styling */
+
 #sidebar {
     width: 20%;
     height: 100%;
@@ -43,8 +43,9 @@ nav.sidebar nav.sidebar .container-fluid {
     font-family: "OstrichSans";
     left: -310px;
     letter-spacing: 2px;
-    
+    transition: left 0.3s linear;
 }
+
 
 /*Center the options */
 
@@ -62,76 +63,42 @@ nav.sidebar .navbar-collapse,
 nav.sidebar .container-fluid {
     padding: 0 0px 0 0px;
 }
-
 nav.sidebar li {
-    width:100%;
+    width: 100%;
 }
-
 @media (min-width: 1330px) {
-    
     .main {
-        
         width: calc(100% - 200px);
         margin-left: 200px;
-        
     }
-    
     nav.sidebar {
-        
         margin-left: 0px;
         float: left;
-        
     }
-    
     section {
-        
         padding-left: 15px;
-        
     }
-    
 }
 
 /* Overriding some of the properties because i got confused.... :X */
 
-@media (min-width: 550px){
-    
+@media (min-width: 550px) {
     .wraper {
-    
         display: grid;
         grid-template-columns: 20% 80%;
-    
     }
-    
     .navigation {
-        
         grid-column: 1/1;
-        
     }
     .navbar {
-        
         position: absolute;
-        transition: left 0.3s linear;
-        
     }
-    
     #sidebar.visible {
-        
-        left:0px;
+        left: 0px;
         transition: left 0.3s linear;
-        
     }
-    
-    .profileWraper {
-        
-        grid-column: 2/2;
-        background-color: #EADDD5;
-        
-        
-    }
-    
     .navbar-btn {
-        
-        display:inline-block;
+        display: inline-block;
         vertical-align: middle;
         width: 20px;
         height: 15px;
@@ -140,35 +107,21 @@ nav.sidebar li {
         position: absolute;
         top: 0;
         right: -60px;
-        
     }
-    
     .navbar-btn span {
-        
         height: 1px;
         background: #111;
         margin-bottom: 5px;
         display: block;
-        
     }
-    
     .navbar-btn span:nth-child(2) {
-        
         width: 75%;
-        
     }
-    
     .navbar-btn span:nth-child(3) {
-        
         width: 50%;
-        
     }
-    
     legend {
-        
         color: azure;
         font-size: 24px;
-        
     }
-    
 }

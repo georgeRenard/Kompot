@@ -8,6 +8,7 @@ require_once('class.sqlite3.inc.php');
 class DataRetriever
 {
     
+    
     #DB Query function
     private static function dbQuery($query="")
     {
@@ -23,13 +24,33 @@ class DataRetriever
     public static function getUserData($id)
     {
         $id = SQLite3::escapeString($id);
-        $query = "SELECT name,password,email FROM users WHERE id = '$id'";
+        $query = "SELECT name,password,email,register FROM users WHERE id = '$id'";
         $dbResult = DataRetriever::dbQuery($query);
         
         return $dbResult[0];
     }
     
+    public static function getUserOptionalData($id){
+        
+        $id = SQLite3::escapeString($id);
+        
+        $query = "SELECT * FROM userOptionalData WHERE id = '$id'";
+        $dbr = DataRetriever::dbQuery($query);
+        
+        return $dbr[0];
+        
+    }
     
+    public static function getUserId($email){
+     
+        $email = SQLite3::escapeString($email);
+        
+        $query = "SELECT id FROM users WHERE email = '$email'";
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result[0]['id'];
+        
+    }
     
     
     
