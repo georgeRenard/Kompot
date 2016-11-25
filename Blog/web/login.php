@@ -1,6 +1,8 @@
 <?php
     require_once('session.php');
     require_once('User.php');
+    require_once('Logger.php');
+    require_once('CredentialValidator.php');
     
     $session = new session();
 
@@ -23,14 +25,19 @@
         $password = htmlspecialchars($password);
         
         $user = new User ($email,$password);
-        $passwordCallBack = $user->isPasswordValid($password);  
+        $credentials = new CredentialValidator($user);
+        
+        $passwordCallBack = $credentials->isPasswordValid();  
         
         if(filter_var($email,FILTER_VALIDATE_EMAIL) &&!$passwordCallBack['hasError'])
         {
+            
             $result = $user->loginValidation($email,$password);
             if(is_int($result)){
                 
-                #$user->addToLogs();   /* Adding some data to the logs table. */
+                $logger = new Logger();
+                $logger->logTrace($email,'logIn');
+                
                 $_SESSION['user'] = $result;
                 header("Location: home.php");
                 exit;

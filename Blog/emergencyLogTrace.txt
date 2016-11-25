@@ -1,0 +1,5 @@
+User:goshoangelov97@gmail.com	Action:logOut	Date:2016-11-25 UTC 22:17:07	IP:::1	Client:Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0
+User:goshoangelov97@gmail.com	Action:logIn	Date:2016-11-25 UTC 22:17:28	IP:::1	Client:Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0
+User:goshoangelov97@gmail.com	Action:logOut	Date:2016-11-25 UTC 22:20:37	IP:::1	Client:Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0
+User:goshoangelov97@gmail.com	Action:logIn	Date:2016-11-25 UTC 22:22:01	IP:::1	Client:Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0
+User:goshoangelov97@gmail.com	Action:logOut	Date:2016-11-25 UTC 22:42:54	IP:::1	Client:Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0

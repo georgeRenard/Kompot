@@ -33,6 +33,21 @@ class SmallUpdates
         
     }
     
+    public static function removePendingUser($token)
+    {
+        
+        $token = SQLite3::escapeString($token);
+        
+        $query = "DELETE FROM pending_user WHERE token = '$token'";
+        
+        $result = SmallUpdates::dbQuery($query);
+        
+        return $result;
+        
+        
+        
+    }
+    
     
     
     

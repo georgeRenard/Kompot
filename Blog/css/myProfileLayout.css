@@ -39,6 +39,7 @@ body {
     
 }
 
+/* Avatar Layout */
 .image-container {
     
     display:block;
@@ -50,21 +51,90 @@ body {
     
 }
 
+/* File field bootstrap override */
+.form-horizontal .form-group {
+    
+    margin-left: 0;
+    
+}
+
 .form-container {
     
-    top: 300px;
+    display: block;
     padding-left: 200px;
-    width: 160px;
+    padding-top: 104px;
+    font-family: "OstrichSans";
+    
+}
+
+.form-group {
+    
+    position: relative;
+    margin-bottom:23px;
     
 }
 
 .form-horizontal {
     
-    top: 300px;
-    padding-top: 310px;
+    padding-top: 0;
+    font-family: "OstrichSans";
+    letter-spacing: 2px;
+    font-size: 20px;
     
 }
 
+#dataForm.form-horizontal {
+    
+    padding-top: 0;
+    display: block;
+    padding-right:30px;
+    
+}
+
+.form-horizontal .control-label {
+    
+    text-align:center;
+    
+}
+
+
+/* File input field {*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+/* Fucking bootstrap padding MIND YOUR OWN BUSINESS */
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    
+    padding-left: 0;
+    padding-right: 0;
+    
+}
+/* }END */
+
+
+.col-md-6 {
+    
+    width: 40%;
+    
+}
+
+/* My preciousssssssssssssssssssssss /OstrichSans/ */
 @font-face {
     font-family: "OstrichSans";
     src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);

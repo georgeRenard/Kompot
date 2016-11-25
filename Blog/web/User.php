@@ -1,6 +1,7 @@
 <?php
 require_once('class.sqlite3.inc.php');
 require_once('DataRetriever.php');
+require_once('CredentialValidator.php');
 
 class User
 {
@@ -8,20 +9,33 @@ class User
     private $email;
     private $name;
     private $password;
-    private $gender = "";
-    private $country = "";
-    private $genre = "";
+    private $confirmEmail;
+    private $confirmPassword;
+    
+    
+    protected function initializePendingUser()
+    {
         
-    public function __construct($email,$password,$name="",$gender,$country,$genre){
+        return array('name' => $this->name, 'email' => $this->email, 'password' => $this->password, 'confirmEmail' => $this->confirmEmail,
+                    'confirmPassword' => $this->confirmPassword);
+         
+    }
+        
+    public function __construct($email,$password,$name="",$confirmEmail="",$confirmPassword=""){
         
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
-        $this->gender = $gender;
-        $this->country = $country;
-        $this->genre = $genre;
+        $this->confirmEmail = $confirmEmail;
+        $this->confirmPassword = $confirmPassword;
+        
+        #Process the credentials
+        
+        $this->sqlEscape();
+        $this->convertUserData();
         
     }
+    
     
     #DB Query function
     private function dbQuery($query="")
@@ -35,23 +49,40 @@ class User
     }
 
     
-    private function convertUserData($email,$name,$password,$confirmPassword)
+    private function sqlEscape()
     {
         
-       #Name Extraction / No HTML TAGS / No Special HTML Chars
-       $name = trim($_POST['name']);
-       $name = strip_tags($name);
-       $name = htmlspecialchars($name);
+       $this->name = SQLite3::escapeString($this->name);
+       $this->email = SQLite3::escapeString($this->email);
+       $this->password = SQLite3::escapeString($this->password);
+       $this->confirmEmail = SQLite3::escapeString($this->confirmEmail);
+       $this->confirmPassword = SQLite3::escapeString($this->confirmPassword);
         
-       #Email Extraction / No HTML TAGS / No Special HTML Chars
-       $email = trim($_POST['email']);
-       $email = strip_tags($email);
-       $email = htmlspecialchars($email);
+    }
+    
+    private function convertUserData()
+    {
         
-       #Password Extraction / No HTML TAGS / No Special HTML Chars    
-       $pass = trim($_POST['password']);
-       $pass = strip_tags($pass);
-       $pass = htmlspecialchars($pass);
+        #Name Extraction / No HTML TAGS / No Special HTML Chars
+        $this->name = trim($this->name);
+        $this->name = strip_tags($this->name);
+        $this->name = htmlspecialchars($this->name);
+        
+        #Email Extraction / No HTML TAGS / No Special HTML Chars
+        $this->email = trim($this->email);
+        $this->email = strip_tags($this->email);
+        $this->email = htmlspecialchars($this->email);
+        $this->confirmEmail = trim($this->confirmEmail);
+        $this->confirmEmail = strip_tags($this->confirmEmail);
+        $this->confirmEmail = htmlspecialchars($this->confirmEmail);
+        
+        #Password Extraction / No HTML TAGS / No Special HTML Chars    
+        $this->password = trim($this->password);
+        $this->password = strip_tags($this->password);
+        $this->password = htmlspecialchars($this->password);
+        $this->confirmPassword = trim($this->confirmPassword);
+        $this->confirmPassword = strip_tags($this->confirmPassword);
+        $this->confirmPassword = htmlspecialchars($this->confirmPassword);
         
     }
     
@@ -59,27 +90,18 @@ class User
     public function registerUser()
     {
         
-       $this->convertUserData($this->email,$this->name,$this->password);
-       
-       $name = SQLite3::escapeString($this->name);
-       $email = SQLite3::escapeString($this->email);
-       $password = SQLite3::escapeString($this->password);
-        
        #Encrypting the password using SHA256
-       $password = hash('sha256',$password);
+       if(strlen($password) > 20){
+         $password = hash('sha256',$password);  
+       }
        
-       #Registered on Date:    
+       #Registered on Timestamp:    
        $timestamp = new DateTime();
        $timestamp = date_format($timestamp,'Y-m-d T H:i:s');
         
        $query = "INSERT OR IGNORE INTO users(name,password,email,register) VALUES('$name','$password','$email','$timestamp')";
        $result = $this->dbQuery($query);
        
-       if(!empty($result)){
-           
-           $this->registerOptionalData($email,$this->gender,$this->country,$this->genre);
-           
-       }
            
     }
     
@@ -93,7 +115,8 @@ class User
         $result = $this->dbQuery($query);
         $dbr = $result['0'];
         
-        $doPasswordsMatch = $this->arePasswordsEqual($password,$dbr['password']);
+        $credentials = new CredentialValidator($this);
+        $doPasswordsMatch = $credentials->arePasswordsEqual($password,$dbr['password']);
         
         if (!empty($dbr) && $doPasswordsMatch)
         {   
@@ -109,116 +132,9 @@ class User
     
     }
     
-    
-    private function registerOptionalData($email,$gender,$country,$genre)
-    {
-        
-        $id = DataRetriever::getUserId($email);
-        $defaultImageUrl = "../../Default-Profile-Picture.jpg";
-        $query = "INSERT OR IGNORE INTO userOptionalData(id,gender,country,genre,imageUrl) VALUES ('$id','$gender','$country','$genre')";
-        
-        $result = $this->dbQuery($query);
-        if(!empty($result))
-        {
             
-            return;
-            
-        }
-            
-    }
         
         
-        
-    
-    public function isNameValid($name)
-    {
-    
-       $error = false;
-       $nameError = '';
-        
-       if(empty($name)){
-           
-           $error = true;
-           $nameError = "Please enter your full name.";
-           
-       }else if(strlen($name) < 4){
-           
-           $error = true;
-           $nameError = "Name must have atleast 4 characters.";
-           
-       }else if(!preg_match("/^[a-zA-Z ]+$/", $name)){
-           
-           $error = true;
-           $nameError = "Name must contain only alphabets and space.";
-           
-       }
-        
-       return array('errorMsg' => $nameError, 'hasError' => $error);
-        
-    }
-    
-    public function isPasswordValid($password,$confirmPassword=""){
-        
-       #String Validation [Password];
-        
-       $error = false;
-       $passwordError = '';
-        
-       if(empty($password)){
-           
-           $error = true;
-           $passwordError = "Please enter password.";
-           
-       }else if(strlen($password) < 6){
-           
-           $error = true;
-           $passwordError = "Password must have atleast 6 characters.";
-           
-       }else if(($confirmPassword != "") && (!arePasswordsEqual($password,$confirmPassword))){
-           
-           $error = true;
-           $passwordError = "Passwords do not match";
-           
-       }
-        
-       return array('errorMsg' => $passwordError, 'hasError' => $error);
-        
-    }
-    
-    private function arePasswordsEqual($password,$confirmPassword)
-    {
-        
-        return $password == $confirmPassword;
-        
-    }
-    
-    public function isEmailValid($email){
-        
-       #String Validations [Email]
-       $error = false;
-       $emailError = '';
-       
-       if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-           
-           $error = true;
-           $emailError = "Please enter a valid email adress.";
-           
-       }else{
-           
-           #Check if the Email already exists in the Database
-           $query = "SELECT email FROM users WHERE email='$email'";
-           $result = $this->dbQuery($query);
-           
-           if(!empty($result)){
-               $error = true;
-               $emailError = "The provided Email is already in use.";
-           }
-           
-       }
-        
-       return array('errorMsg' => $emailError, 'hasError' => $error);
-        
-    }
     
     
     

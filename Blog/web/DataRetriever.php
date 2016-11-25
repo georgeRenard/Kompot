@@ -24,7 +24,7 @@ class DataRetriever
     public static function getUserData($id)
     {
         $id = SQLite3::escapeString($id);
-        $query = "SELECT name,password,email,register FROM users WHERE id = '$id'";
+        $query = "SELECT name,email,register FROM users WHERE id = '$id'";
         $dbResult = DataRetriever::dbQuery($query);
         
         return $dbResult[0];
@@ -49,6 +49,20 @@ class DataRetriever
         $result = DataRetriever::dbQuery($query);
         
         return $result[0]['id'];
+        
+    }
+    
+    
+    public static function getPendingUser($token){
+        
+        $token = SQLite3::escapeString($token);
+        
+        $query = "SELECT * FROM pending_user WHERE token = '$token'";
+        
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result[0];
+        
         
     }
     

@@ -1,0 +1,24 @@
+/* Basic HTML Tag styling */
+
+html {
+    
+    height: 100%
+    
+}
+
+body{
+
+    height:100%;
+    background-image: url('../../backgroundWallpaper.jpg');
+    font-family: OstrichSans;
+    background-size: cover;
+    background-repeat: no-repeat;
+ 
+}
+
+.container {
+    
+    padding-top: 50px;
+    
+}
+

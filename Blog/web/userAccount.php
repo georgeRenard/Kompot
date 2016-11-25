@@ -116,30 +116,63 @@
                         <img src="<?=$imageUrl?>">
 
                     </div>
-
-                    <form class="form-horizontal" enctype="multipart/form-data" action="userAccount.php" method="POST">
-                        <div class="form-group">
-                                <input class="form-control" type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                                <input class="form-control" id="upload_image" name="profilePicture" type="file" />
-                        </div>
-                        <input class="btn btn-primary" name="btn-submit" type="submit" value="Upload">
-                    </form>
                     <!-- User data form -->
                     <div class="form-container">
 
-                        <form class="form-horizontal" action="userAccount.php" method="POST">
-                            
+                        <form id="dataForm" class="form-horizontal" action="userAccount.php" method="POST">
+
                             <div class="form-group">
-                                <label class="form-control control-label" for="displayName">Name</label>
-                                <div class="col-sm-4">
+                                <label class="col-md-2 control-label" for="displayName">Name</label>
+                                <div class="col-md-6">
                                     <input type="text" class="form-control" disabled id="displayName" value="<?=$user['name']?>">
                                 </div>
                             </div>
-                            
-                            
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="displayEmail">Email</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" disabled id="displayEmail" value="<?=$user['email']?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="displayGender">Gender</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" disabled id="displayGender" value="<?=$userOptional['gender']?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="displayCountry">Country</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" disabled id="displayCountry" value="<?=$userOptional['country']?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="displayName">Genre</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" disabled id="displayName" value="<?=$userOptional['genre']?>">
+                                </div>
+                            </div>
+
+
                         </form>
 
                     </div>
+                    <!-- Upload and Browse buttons -->
+                    <form class="form-horizontal" enctype="multipart/form-data" action="userAccount.php" method="POST">
+                        <div class="form-group">
+                            <div class="col-lg-6 col-sm-6 col-12">
+                                <label class="btn btn-primary">
+                                    Browse&hellip;
+                                    <input class="form-control" type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                                    <input type="file" name="profilePicture" style="display: none;">
+                                </label>
+                                <input class="btn btn-primary" name="btn-submit" value="Upload" type="submit">
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
             </div>

@@ -14,7 +14,8 @@ class session
 			session_start();
             if( !isset($_SESSION["id"])   ){
 				session_regenerate_id(true);
-				$sess_id = session_id(); $_SESSION["id"] = md5($sess_id.publisher);
+				$sess_id = session_id(); 
+                $_SESSION["id"] = md5($_SESSION["id"]);
 				//$_SESSION['crypt'] = cryptNonsense;
 			}	
 		}else{	if ($shout !== "mute"){echo "Session was already started!!!<br />";}	}
