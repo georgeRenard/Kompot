@@ -1,0 +1,151 @@
+﻿.container-fluid {
+    padding-top: 17px;
+}
+
+.button {
+  font-family: OstrichSans;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 8px 18px 8px 18px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: Transparent;
+  border: solid #ffffff 1px;
+  text-decoration: none;
+  outline: none;
+  margin-left: 10px;
+
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+}
+
+.button:hover {
+  background: Transparent;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@font-face {
+	font-family:"OstrichSans";
+	src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);
+}
+
+a {
+  outline: 0;
+}
+
+.main {
+  float: left;
+  position: relative;
+  width: 100%;
+  margin: 120px auto 0;
+  min-height: 630px;
+  text-align: center;
+  text-shadow: none;
+}
+
+.main h1.main-text {
+  font-family: OstrichSans;
+  text-transform: uppercase;
+  line-height: 105%;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-align: center;
+  margin: 15px 0 0;
+  color: #ffffff;
+  font-size: 190px;
+}
+
+.main h1 {
+  font-family: OstrichSans;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.main h2.subtitle {
+  font-size: 33px;
+  line-height: 140%;
+  text-shadow: none;
+  font-family: OstrichSans;
+  text-transform: capitalize;
+  color: #ffffff;
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 45px;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 2px;
+}
+
+.center {
+  float: right;
+  right: 50%;
+  position: relative;
+}
+
+.center .inner-center {
+  float: right;
+  right: -50%;
+  position: relative;
+}
+
+.center .inner-center .btn-toolbar .button {
+  padding: 17px 65px 17px 65px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 767px){
+  .main h1.main-text {
+    font-size: 23vw;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .main h1 {
+    font-size: 4vw;
+    line-height: 100%;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 767px) {
+  .main h2.subtitle {
+    font-size: 5vw;
+    padding: 0 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .center .inner-center {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-slider .button {
+    margin-bottom: 50px;
+  }
+}
+
+.footer {
+  float: left;
+  position: relative;
+  width: 100%;
+  margin: 25px auto 0;
+  min-height: 250px;
+  text-align: center;
+  text-shadow: none;
+}
