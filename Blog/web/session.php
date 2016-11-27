@@ -27,18 +27,19 @@ class session
         if(isset($_SESSION['user']) != ""){
        
             header("Location: ../../index.php");
-       
+            exit;
+            
         }
         
     }
     
-    public static function redirectIfNotUser(){
+    public static function isUser(){
         
         self::start();
-        if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')){
+        if (!(isset($_SESSION['user']) != "")){
 
-            header ("Location: login.php");
-
+            header ("Location: ../../index.php");
+            exit;
         }
     }
     

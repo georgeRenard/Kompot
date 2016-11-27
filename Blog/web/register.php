@@ -26,13 +26,13 @@
        $nameCallBack = $credentials->isNameValid();
        $passwordCallBack = $credentials->isPasswordValid();
        $emailCallBack = $credentials->isEmailValid();
-           
+        
+
        if(!$emailCallBack['hasError'] && !$passwordCallBack['hasError'] && !$nameCallBack['hasError']){
                
             $pendingUser = new PendingUser($user);
-           
             $pendingUser->initiateRegisterRequest();
-           
+        
             $errType = "success";
             $errorMessage = "Successfully registered, you may log-in";
             
@@ -42,8 +42,8 @@
             unset($password);
             unset($user);
                
-            header("Location: ../../index.php");
-            exit;
+            //header("Location: ../../index.php");
+            //exit;
                
         }else {
                

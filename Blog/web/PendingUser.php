@@ -42,7 +42,7 @@ class PendingUser extends User
         
         $result = $this->dbQuery($query);
         
-        if(!empty($result))
+        if(empty($result))
         {
             
             $url = "localhost:8080/Blog/web/accountActivation.php?token=$token";
@@ -50,19 +50,10 @@ class PendingUser extends User
             
         }
         
-    }
+    }    
     
-    
-        
-    
-    
+       
 }
-
-
-
-
-
-
 
 
 

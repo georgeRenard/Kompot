@@ -6,6 +6,7 @@
 
     $session = new session();
 
+    $session::isUser();
 
     #In case the user tries to update his profile picture
     if(isset($_POST['btn-submit'])){

@@ -1,45 +1,48 @@
 <?php
-    require '../PHPMailer/PHPMailerAutoload.php';
 
+require_once "../PHPMailer/PHPMailerAutoload.php";
 
-    function sendAuthenticationEmail($email,$name,$url)
+function sendAuthenticationEmail($email,$name,$url){
+
+    $mail = new PHPMailer;
+
+    //Enable SMTP debugging. 
+    $mail->SMTPDebug = 3;                               
+    //Set PHPMailer to use SMTP.
+    $mail->isSMTP();            
+    //Set SMTP host name                          
+    $mail->Host = gethostbyname('tls://smtp.gmail.com');
+    //Set this to true if SMTP host requires authentication to send email
+    $mail->SMTPAuth = true;                          
+    //Provide username and password     
+    $mail->Username = "authentemails@gmail.com";                 
+    $mail->Password = "authenticationINC";                           
+    //If SMTP requires TLS encryption then set it
+    $mail->SMTPSecure = "tls";                           
+    //Set TCP port to connect to 
+    $mail->Port = 587;                                   
+
+    $mail->From = "authentemails@gmail.com";
+    $mail->FromName = "True Slavs Team |||";
+
+    $mail->addAddress($email, $name);
+
+    $mail->isHTML(false);
+
+    $mail->Subject = "Email Verification";
+    $mail->Body = "Hello, " . $name . PHP_EOL . "Thank you for signing up for our website. Here is your unique activation link " . $url
+        . PHP_EOL . "We hope you have great time. Peace!";
+    //$mail->AltBody = "This is the plain text version of the email content";
+    if(!$mail->send()) 
     {
-
-        $mail = new PHPMailer;
-
-        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'authentemails@gmail.com';                 // SMTP username
-        $mail->Password = 'authenticationINC';                           // SMTP password
-        $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 465;                                    // TCP port to connect to
-
-        $mail->setFrom('authentEmail@gmail.com', 'True Slavs Team');
-        $mail->addAddress($email, $name);     // Add a recipient
-        // Name is optional
-    
-        $mail->isHTML(false);                                  // Set email format to HTML
-
-        $mail->Subject = "Email Verification";
-        $mail->Body    = <<< EOF
-        Hey $name,
-        Thank you for signing up at our website!
-        Please go to $url to activate your account. Enjoy!
-        Team True Slavs |||. 
-        EOF;
-
-        if(!$mail->send()) {
-            
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-            
-        }else {
-            
-            echo 'Message has been sent';
-        }
+        echo "Mailer Error: " . $mail->ErrorInfo;
+    } 
+    else 
+    {
+        echo "Message has been sent successfully";
     }
+}
+
+
 
 ?>
