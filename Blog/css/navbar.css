@@ -1,10 +1,13 @@
 nav {
-    position: absolute;
+    display:flex;
+    flex-flow:column;
+    position:absolute;
     background-color: #1F1F1F;
     width: 20%;
     height: 100%;
     font-size: 20px;
     text-align: center;
+    
 }
 .main .row {
     padding: 0;
@@ -36,6 +39,7 @@ nav.sidebar nav.sidebar .container-fluid {
 
 #sidebar {
     width: 20%;
+    max-height: 845px;
     height: 100%;
     float: left;
     z-index: 8000;
@@ -44,6 +48,10 @@ nav.sidebar nav.sidebar .container-fluid {
     left: -310px;
     letter-spacing: 2px;
     transition: left 0.3s linear;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    
 }
 
 

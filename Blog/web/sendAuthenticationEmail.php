@@ -31,7 +31,7 @@ function sendAuthenticationEmail($email,$name,$url){
 
     $mail->Subject = "Email Verification";
     $mail->Body = "Hello, " . $name . PHP_EOL . "Thank you for signing up for our website. Here is your unique activation link " . $url
-        . PHP_EOL . "We hope you have great time. Peace!";
+        . PHP_EOL . "We hope you have great time. Peace!" . PHP_EOL . "Team TRUE Slavs |||";
     //$mail->AltBody = "This is the plain text version of the email content";
     if(!$mail->send()) 
     {

@@ -2,6 +2,7 @@
     require_once('session.php');
     require_once('DataRetriever.php');
     require_once('UpdateImage.php');
+    require_once('Report.php');
 
 
     $session = new session();
@@ -12,6 +13,12 @@
     if(isset($_POST['btn-submit'])){
         
         updateImageRequest();
+        
+    }
+
+    if(isset($_POST['btn-report'])){
+        
+        $report = new report($_SESSION['user'],$_POST['title'],$_POST['report_body']);
         
     }
        
@@ -80,7 +87,7 @@
                                 <li><a href="#">My Playlist</a></li>
                                 <li><a href="#">My Likes</a></li>
                                 <li><a href="#">Security Update</a></li>
-                                <li><a href="#">Report</a></li>
+                                <li><a href="#report">Report</a></li>
 
                             </ul>
                         </div>
@@ -111,11 +118,26 @@
                 </script>
                 <!-- User profile card -->
                 <div class="userDataColumn">
+                    <div class="user_picture_section">
+                        <div class="image-container">
 
-                    <div class="image-container">
+                            <img src="<?=$imageUrl?>">
 
-                        <img src="<?=$imageUrl?>">
+                        </div>
 
+                        <!-- Upload and Browse buttons -->
+                        <div id="uploadField" class="col-lg-12">
+                            <form id="buttonForm" class="form-horizontal" enctype="multipart/form-data" action="userAccount.php" method="POST">
+                                <div class="col-md-12">
+                                    <label class="btn btn-primary">
+                                        Browse&hellip;
+                                        <input class="form-control" type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                                        <input type="file" name="profilePicture" style="display: none;">
+                                    </label>
+                                    <input class="btn btn-primary" name="btn-submit" value="Upload" type="submit">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!-- User data form -->
                     <div class="form-container">
@@ -127,6 +149,7 @@
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" disabled id="displayName" value="<?=$user['name']?>">
                                 </div>
+                                <img class="input-icon" src="../form-icons/name.svg" width="36px" height="36px">
                             </div>
 
                             <div class="form-group">
@@ -134,6 +157,7 @@
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" disabled id="displayEmail" value="<?=$user['email']?>">
                                 </div>
+                                <img class="input-icon" src="../form-icons/email.svg" width="36px" height="36px">
                             </div>
 
                             <div class="form-group">
@@ -141,6 +165,7 @@
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" disabled id="displayGender" value="<?=$userOptional['gender']?>">
                                 </div>
+                                <img class="input-icon" src="../form-icons/gender.svg" width="36px" height="36px">
                             </div>
 
                             <div class="form-group">
@@ -148,6 +173,7 @@
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" disabled id="displayCountry" value="<?=$userOptional['country']?>">
                                 </div>
+                                <img class="input-icon" src="../form-icons/country.svg" width="36px" height="36px">
                             </div>
 
                             <div class="form-group">
@@ -155,22 +181,49 @@
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" disabled id="displayName" value="<?=$userOptional['genre']?>">
                                 </div>
+                                <img class="input-icon" src="../form-icons/genre.svg" width="36px" height="36px">
                             </div>
 
 
                         </form>
 
                     </div>
-                    <!-- Upload and Browse buttons -->
-                    <form class="form-horizontal" enctype="multipart/form-data" action="userAccount.php" method="POST">
+
+                </div>
+
+
+            </div>
+
+            <section id="middleSection" class="parallax">
+                <h1>|||</h1>
+                <h3>True Slavs</h3>
+            </section>
+
+            <div class="reportPage">
+                <div class="report">
+                    <legend class="reportLegend">Report</legend>
+                    <a name="report"></a>
+
+                    <form id="reportForm" class="form-horizontal" action="userAccount.php" method="post">
+
+                        <div id="report_title_group" class="form-group">
+                            <label class="col-md-4 control-label" for="title">Title</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="title" id="report_title" required>
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <label class="btn btn-primary">
-                                    Browse&hellip;
-                                    <input class="form-control" type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                                    <input type="file" name="profilePicture" style="display: none;">
-                                </label>
-                                <input class="btn btn-primary" name="btn-submit" value="Upload" type="submit">
+                            <label class="col-md-4 control-label" for="body">Body</label>
+                            <div class="form-group-lg">
+                                <textarea class="form-control" name="report_body" rows="14" id="body"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button class="btn btn-default" type="reset">Reset</button>
+                                <button class="btn btn-danger" name="btn-report" type="submit">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -182,9 +235,11 @@
 
         <footer>
 
-
-
         </footer>
+        <script>
+            //Js Validate TextArea Function -->
+
+        </script>
 
 
     </body>
