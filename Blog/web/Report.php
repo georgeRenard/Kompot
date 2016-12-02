@@ -1,5 +1,6 @@
 <?php
     require_once('class.sqlite3.inc.php');
+    date_default_timezone_set("Europe/Sofia"); 
         
 class Report 
 {

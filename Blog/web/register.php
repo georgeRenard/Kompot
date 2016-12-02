@@ -5,7 +5,6 @@
     require_once('PendingUser.php');
     
     $session = new session();
-
     $session::checkLogin();
 
 

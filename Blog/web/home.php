@@ -34,7 +34,7 @@
         <main>
             <a href="logOut.php">Log Out</a>
             <br>
-            <a href="#">Upload</a>
+            <a href="tuneUpload.php">Upload</a>
             <br>
             <a href="userAccount.php">My Profile</a>
         </main>

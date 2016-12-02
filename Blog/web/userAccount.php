@@ -209,7 +209,7 @@
                         <div id="report_title_group" class="form-group">
                             <label class="col-md-4 control-label" for="title">Title</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" name="title" id="report_title" required>
+                                <input type="text" pattern="^[A-Za-z\s]{6,24}$"class="form-control" name="title" id="report_title" required>
                             </div>
                         </div>
 

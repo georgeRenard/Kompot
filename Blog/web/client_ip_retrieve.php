@@ -25,5 +25,3 @@ function get_client_ip_server() {
     return $ipaddress;
 }
 
-
-?>

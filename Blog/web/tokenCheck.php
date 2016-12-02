@@ -1,5 +1,6 @@
 <?php
     require_once('DataRetriever');
+    date_default_timezone_set("Europe/Sofia");
     
     
     function verifyUser($token){
@@ -35,6 +36,3 @@
     }
 
 
-
-
-?>

@@ -52,7 +52,7 @@
                             <div class="btn-toolbar">
                                 <button class="button" onclick="location.href='#'" type="button">Listen
                                 </button>
-                                <button class="button" onclick="location.href='Blog/web/login.php'" type="button">Upload
+                                <button class="button" onclick="location.href='Blog/web/tuneUpload.php'" type="button">Upload
                                 </button>
                             </div>
                         </div>

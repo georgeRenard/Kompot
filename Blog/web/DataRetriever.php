@@ -34,10 +34,10 @@ class DataRetriever
         
         $id = SQLite3::escapeString($id);
         
-        $query = "SELECT * FROM userOptionalData WHERE id = '$id'";
-        $dbr = DataRetriever::dbQuery($query);
-        
-        return $dbr[0];
+            $query = "SELECT * FROM userOptionalData WHERE id = '$id'";
+            $dbr = DataRetriever::dbQuery($query);
+
+            return $dbr[0];
         
     }
     

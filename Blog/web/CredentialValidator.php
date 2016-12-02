@@ -130,5 +130,3 @@ class CredentialValidator extends User
     }
     
 }
-
-?>

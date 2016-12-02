@@ -3,6 +3,7 @@ require_once('class.sqlite3.inc.php');
 require_once('DataRetriever.php');
 require_once('CredentialValidator.php');
 
+
 class User
 {
  
@@ -113,7 +114,8 @@ class User
         $query = "SELECT id,email,password,name FROM users WHERE email = '$email'";
        
         $result = $this->dbQuery($query);
-        $dbr = $result['0'];
+        if(!empty($result)){
+            $dbr = $result['0'];
         
         $credentials = new CredentialValidator($this);
         $doPasswordsMatch = $credentials->arePasswordsEqual($password,$dbr['password']);
@@ -128,6 +130,7 @@ class User
             return false;
             
         }
+        }
         
     
     }
@@ -139,5 +142,3 @@ class User
     
     
 }
-
-?>
