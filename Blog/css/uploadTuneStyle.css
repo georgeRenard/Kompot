@@ -22,6 +22,18 @@ body {
     height: 100%;
     width: 100%;
     flex-direction: column;
+    background: url('../../backgroundWallpaper.jpg') no-repeat;
+    background-size: cover;
+}
+
+body > main {
+    
+    height: 50vw;
+    
+}
+
+backgroundWallpaper {
+    filter: blur(1px);
 }
 .img-circle {
     border-radius: 50%;
@@ -40,7 +52,7 @@ legend {
     margin: 0;
     margin-top: 18px;
     font-weight: bold;
-    width: 10%;
+    width: 12vw;
     color: #222222;
     letter-spacing: 3px;
     margin-left: auto;
@@ -96,7 +108,7 @@ legend {
 .hamburger-inner::after {
     width: 40px;
     height: 4px;
-    background-color: #000;
+    background-color: #222222;
     border-radius: 4px;
     position: absolute;
     transition-property: transform;
@@ -160,10 +172,201 @@ legend {
 /* End of the button */
 
 
+/* Dynamic Side Menu after button click */
+
+.side-menu::before {
+    width: 0;
+    height: 0;
+    display: block;
+    content: '';
+    position: absolute;
+    top: -.45em;
+    right: .97em;
+    left: .95em;
+    pointer-events: none;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #222222;
+    font-size: 1.4em;
+    right: auto;
+    left: .95em;
+    padding: 0;
+    text-align: center;
+}
+.side-menu::after {
+    font-size: 1.4em;
+    display: block;
+    width: 0;
+    height: 0;
+    content: '';
+    pointer-events: none;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #222222;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -.45em;
+    right: .9em;
+    left: .85em;
+}
+.side-menu {
+    position: absolute;
+    z-index: 9;
+    top: 155px;
+    left: 15px;
+    display: none;
+    overflow: visible;
+    width: 228px;
+    margin: 0;
+    padding: 0;
+    color: azure;
+    border: 1px solid azure;
+    border-radius: 3px;
+    background: #222222;
+    box-shadow: 1px 1px 3px rgba(34, 34, 34, 0.2);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-animation: popover 0.3s ease-in-out;
+    -moz-animation: popover 0.3s ease-in-out;
+    animation: popover 0.3s ease-in-out;
+    line-height: 1.5;
+}
+.side-menu li:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.active {
+    display: block;
+}
+li {
+    text-align: center;
+    line-height: 24px;
+    font-size: 18px;
+    box-sizing: border-box;
+    font-family: "OstrichSans";
+    letter-spacing: 4px;
+}
+li a {
+    display: block;
+    padding: .5em;
+    color: azure;
+    border-bottom: 1px solid azure;
+    transition: color 0.1s linear;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+li a:link {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li > a:hover {
+
+    background-color: transparent;
+    color: azure;
+    font-weight: bold;
+
+}
 /* Media Rules */
 
-@media (max-width: 1150) {
-    legend {
-        font-size: 14px;
+@media only screen and (max-width: 768px) {
+    
+    .hamburger-label {
+        
+        font-size: 0;
+        letter-spacing: 0;
+        
     }
+    
+}
+
+@media only screen and (max-width: 1284px) {
+    
+    legend {
+        
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        margin-top: 22px;
+        
+    }
+    
+}
+
+
+@media only screen and (max-width: 1009px) {
+    
+    legend {
+        
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 22px;
+        width: 14vw;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 899px) {
+    
+    legend {
+        
+        font-size: 14px;
+        margin-top: 22px;
+        letter-spacing: 3px;
+        width: 16vw;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 623px) {
+    
+    legend {
+        
+        margin-top: 15px;
+        font-size: 14px;
+        width: 16vw;
+        letter-spacing: 3px;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 501px) {
+    
+    legend {
+        
+        margin-top: 13px;
+        font-size: 14px;
+        width: 17vw;
+        letter-spacing: 3px;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 360px) {
+    
+    legend {
+        
+        margin-top: 13px;
+        font-size: 0;
+        width: 0;
+        letter-spacing: 0;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 256px) {
+    
+    .hamburger-button {
+        display: none;
+    }
+    
 }

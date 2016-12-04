@@ -310,6 +310,12 @@ textarea {
     
 }
 
+a {
+    
+    transition: color 0.1s linear;
+    
+}
+
 #report_title_group.form-group {
     
     margin-bottom: 45px;

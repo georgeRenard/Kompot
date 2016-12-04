@@ -69,16 +69,24 @@
             <div class="secondary-bar">
 
                 <!-- Idea from flavicons.com / Implementation idea by Jonathan Suh -->
-                <button id="collapseButton" class="hamburger-button collapse-style is-active" type="button">
-                    <span class="hamburger-box">
+                    <button id="collapseButton" class="hamburger-button collapse-style" type="button">
+                        <span class="hamburger-box">
                         <span class="hamburger-inner">
                             
                         </span>
-                    </span>
-                    <span class="hamburger-label">
+                        </span>
+                        <span class="hamburger-label">
                         <?=$userName?>
                     </span>
-                </button>
+                    </button>
+
+                    <ul id="side-menu" class="side-menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="userAccount.php">My Profile</a></li>
+                        <li><a href="#">My Playlist</a></li>
+                        <li><a href="userAccount.php">Report</a></li>
+                        <li><a href="logOut.php">Logout</a></li>
+                    </ul>
 
                 <legend>True Slavs |||</legend>
 
@@ -87,6 +95,7 @@
                     $('#collapseButton').click(function() {
 
                         $('#collapseButton').toggleClass('is-active');
+                        $('#side-menu').toggleClass('active');
 
                     });
 
@@ -99,7 +108,13 @@
         <main>
 
             <!-- The main form -->
-
+            <div class="container-fluid">
+                
+                <div class="well">
+                    
+                </div>
+                
+            </div>
 
 
         </main>

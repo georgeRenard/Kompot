@@ -11,7 +11,7 @@
         <meta name="" content="#" />
         <meta name="google" content="nositelinkssearchbox" />
         <meta name="google" content="notranslate" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <title>KOR</title>
 

@@ -34,9 +34,18 @@ class PendingUser extends User
     {
         
         $token = sha1(uniqid($this->user['password'],true));
-        $password = hash('sha256',$this->user['password']);
+        
+        $url = "localhost:8080/Blog/web/accountActivation.php?token=$token";
         $email = $this->user['email'];
         $name = $this->user['name'];
+        echo !extension_loaded('openssl')?"Not Available":"Available";
+        $isEmailSent = sendAuthenticationEmail($email,$name,$url);
+        
+        if(!$isEmailSent){
+            return;
+        }
+        
+        $password = hash('sha256',$this->user['password']);
         $timestamp = new DateTime();
         $timestamp = date_format($timestamp,'Y-m-d T H:i:s');
         $query = "INSERT OR IGNORE INTO pending_user(email,password,name,token,timestamp) VALUES('$email','$password','$name','$token','$timestamp')";
@@ -45,10 +54,9 @@ class PendingUser extends User
         
         if(empty($result))
         {
-            
-            $url = "localhost:8080/Blog/web/accountActivation.php?token=$token";
-            sendAuthenticationEmail($email,$name,$url);            
-            
+         
+            #Code to manage dbResult error here
+    
         }
         
     }    

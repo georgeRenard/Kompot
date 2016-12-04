@@ -1,13 +1,4 @@
-html {
-     
-  background: url('backgroundWallpaper.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-    
-}
+
 
 .container-fluid {
     padding-top: 17px;
