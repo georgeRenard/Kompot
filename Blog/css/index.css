@@ -17,6 +17,7 @@
   text-decoration: none;
   outline: none;
   margin-left: 10px;
+  margin-top: 8px;
 
 }
 
@@ -43,7 +44,6 @@ a {
   float: left;
   position: relative;
   width: 100%;
-  margin: 120px auto 0;
   min-height: 670px;
   text-align: center;
   text-shadow: none;
@@ -290,4 +290,19 @@ a:-webkit-any-link {
   color: #FFFFFF;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+
+@media only screen and (max-width: 322px) {
+    
+    #about.button {
+        
+        display: none;
+        
+    }
+    
+    .row{
+        text-align: center;
+    }
+    
 }

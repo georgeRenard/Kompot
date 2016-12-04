@@ -33,7 +33,7 @@
                             </button>
                             <button class="button" onclick="location.href='Blog/web/register.php'" type="button">Register
                             </button>
-                            <button class="button" onclick="location.href='#'" type="button">About Us
+                            <button id="about" class="button" onclick="location.href='#'" type="button">About Us
                             </button>
                         </div>
                     </div>
