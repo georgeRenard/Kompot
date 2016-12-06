@@ -15,7 +15,7 @@ html {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: "OstrichSans";
+    font-family: "OstrichSans", sans-serif;
 }
 body {
     display: flex;
@@ -25,13 +25,9 @@ body {
     background: url('../../backgroundWallpaper.jpg') no-repeat;
     background-size: cover;
 }
-
 body > main {
-    
-    height: 50vw;
-    
+    height: 100%;
 }
-
 backgroundWallpaper {
     filter: blur(1px);
 }
@@ -48,7 +44,7 @@ backgroundWallpaper {
     justify-content: center;
 }
 legend {
-    font-family: "OstrichSans";
+    font-family: "OstrichSans", sans-serif;
     margin: 0;
     margin-top: 18px;
     font-weight: bold;
@@ -164,7 +160,7 @@ legend {
     margin-left: 5px;
     vertical-align: middle;
     text-transform: uppercase;
-    font-family: "OstrichSans";
+    font-family: "OstrichSans", sans-serif;
     letter-spacing: 4px;
     font-size: 19px;
 }
@@ -243,7 +239,7 @@ li {
     line-height: 24px;
     font-size: 18px;
     box-sizing: border-box;
-    font-family: "OstrichSans";
+    font-family: "OstrichSans", sans-serif;
     letter-spacing: 4px;
 }
 li a {
@@ -255,118 +251,312 @@ li a {
     background-color: transparent;
     text-decoration: none;
 }
-
 li a:link {
     text-decoration: none;
 }
-
 ul {
     list-style-type: none;
 }
-
 li > a:hover {
-
     background-color: transparent;
     color: azure;
     font-weight: bold;
-
 }
+
+/* Page content / Form / UploadButton / Progress Bar */
+
+.well {
+    border-radius: 0;
+}
+.upload-info {
+    overflow: hidden;
+    font-size: .75em !important;
+    font-family: "OstrichSans", sans-serif;
+    line-height: 18px;
+    font-weight: 400;
+    color: #222222;
+    width: 100%;
+    height: 80px;
+}
+.upload-progress {
+    width: 100%;
+    height: 20px;
+    background-color: #222222;
+    opacity: 0.5;
+    position: relative;
+}
+.upload-feedback {
+    width: 100%;
+    height: 60px;
+    background-color: azure;
+    padding: 1.8rem;
+    padding-top: 2.15rem;
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+}
+.upload-main {
+    height: 100%;
+    background-color: azure;
+    border-top: 1px solid #222222;
+}
+.button-holder {
+    height: 50px;
+}
+.upload-button-style {
+    background-color: #222222;
+    max-width: 250px;
+    min-height: 50px;
+    text-align: center;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+.file-choose-section {
+    height: 70px;
+}
+.upload-hidden {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    background: #222222;
+    outline: none;
+    cursor: inherit;
+}
+.upload-hidden-label {
+    text-align: center;
+    font-size: 18px;
+    top: 4.5px;
+    letter-spacing: 2px;
+    font-family: "OstrichSans", sans-serif;
+    position: relative;
+    font-weight: 700;
+}
+.upload-line {
+    width: 1%;
+    position: absolute;
+    background-color: #55AE3A
+}
+.form-container {
+    height: 100%;
+    text-align: center;
+    padding: 15px;
+}
+#data-form.form-horizontal {
+    padding-top: 30px;
+}
+.btn {
+    transition: opacity 100ms linear, color 100ms linear;
+}
+.btn-primary:hover {
+    background-color: #222222;
+    border-color: #222222;
+    opacity: 0.8;
+}
+.btn-primary {
+    border-color: transparent;
+}
+.user-message {
+    text-align: center;
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 900px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 900px;
+    }
+}
+.col-sm-offset-4 {
+    margin-left: 30%;
+}
+#submit-button.btn-primary {
+    background-color: #222222;
+}
+
+/* END */
+
+
+/* Footer */
+
+.dark-footer .footer-wrapper {
+    border: none;
+    background: none;
+}
+.footer {
+    float: left;
+    position: relative;
+    width: 100%;
+    margin: auto 0;
+    min-height: 150px;
+    text-align: center;
+    text-shadow: none;
+    background-color: #222222;
+    top:100px;
+    padding-top:20px;
+}
+.footer-wrapper .footer {
+    position: relative;
+    padding: 35px 0;
+}
+@media (max-width: 767px) {
+    body .footer-wrapper .footer {
+        padding: 35px 15px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+.footer-wrapper .footer .social-links {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px auto;
+}
+.dark-footer {
+    width: 100%;
+    float: left;
+    background: #333;
+    top:70px;
+    color: #fff;
+    padding: 35px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.button-fb {
+    background-image: url(../images/facebook.png);
+    font-family: OstrichSans;
+    color: black;
+    font-size: 20px;
+    padding: 4px 20px 4px 28px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid #ffffff 1px;
+    text-decoration: none;
+    outline: none;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    letter-spacing: 1px;
+}
+a {
+    color: #669;
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;
+}
+.dark-footer .footer-wrapper .footer p.copyright {
+    font-family: OstrichSans;
+    font-style: normal;
+    font-size: 18px;
+    margin: 0;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+.dark-footer .footer-wrapper .footer p.links {
+    color: #3C3C3C;
+}
+.dark-footer .footer-wrapper .footer p {
+    color: #ffffff;
+    text-shadow: none;
+    font-size: 18px;
+    margin: 35px 0;
+}
+.dark-footer .footer-wrapper .footer p a {
+    text-shadow: none;
+    font-size: 20px;
+    margin: 0 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.inner-center {
+    
+    padding-bottom: 10px;
+    
+}
+
+/* END */
+
+
 /* Media Rules */
 
 @media only screen and (max-width: 768px) {
-    
     .hamburger-label {
-        
         font-size: 0;
         letter-spacing: 0;
-        
     }
-    
 }
-
 @media only screen and (max-width: 1284px) {
-    
     legend {
-        
         font-size: 17px;
         font-weight: 700;
         letter-spacing: 3px;
         margin-top: 22px;
-        
     }
-    
 }
-
-
 @media only screen and (max-width: 1009px) {
-    
     legend {
-        
         font-size: 16px;
         font-weight: 600;
         margin-top: 22px;
         width: 14vw;
-        
     }
-    
 }
-
 @media only screen and (max-width: 899px) {
-    
     legend {
-        
         font-size: 14px;
         margin-top: 22px;
         letter-spacing: 3px;
         width: 16vw;
-        
     }
-    
 }
-
 @media only screen and (max-width: 623px) {
-    
     legend {
-        
         margin-top: 15px;
         font-size: 14px;
         width: 16vw;
         letter-spacing: 3px;
-        
     }
-    
 }
-
 @media only screen and (max-width: 501px) {
-    
     legend {
-        
         margin-top: 13px;
         font-size: 14px;
         width: 17vw;
         letter-spacing: 3px;
-        
     }
-    
 }
-
 @media only screen and (max-width: 360px) {
-    
     legend {
-        
         margin-top: 13px;
         font-size: 0;
         width: 0;
         letter-spacing: 0;
-        
     }
-    
 }
-
 @media only screen and (max-width: 256px) {
-    
     .hamburger-button {
         display: none;
     }
-    
 }
+@media only screen and (max-width: 270px) {
+    .user-message {
+        display: none;
+    }
+}
+.
