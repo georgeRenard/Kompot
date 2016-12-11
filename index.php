@@ -1,7 +1,6 @@
 <?php date_default_timezone_set("Europe/Sofia");
 
 
-
 ?>
     <!DOCTYPE html>
     <html xmlns:style="http://www.w3.org/1999/xhtml">
@@ -18,12 +17,12 @@
         <link type="text/css" rel="stylesheet" href="Blog/css/bootstrap.css">
         <link type="text/css" rel="stylesheet" href="Blog/css/page.css">
         <link type="text/css" rel="stylesheet" href="Blog/css/index.css">
-
-        <title>KOR</title>
     </head>
 
     <body>
-
+       <div id="snow">
+           
+       </div>
         <header>
             <div class="container-fluid">
                 <div class="row" align="right">
@@ -77,6 +76,8 @@
                     <p class="copyright">We do not own any of the rights regarding the music we post. It's only for entertainment purposes! True Slavs |||</p>
                 </div>
             </footer>
+
+        </div>
 
         <script type="text/jscript" href="Blog/scripts/bootstrap.js"></script>
         <script type="text/jscript" href="Blog/scripts/jquery-3.1.1.js"></script>

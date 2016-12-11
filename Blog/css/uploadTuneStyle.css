@@ -24,6 +24,15 @@ body {
     flex-direction: column;
     background: url('../../backgroundWallpaper.jpg') no-repeat;
     background-size: cover;
+    font-family: "OstrichSans", sans-serif;
+    letter-spacing: 4px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.form-control {
+    font-size: 16px;
+    letter-spacing: 2.5px;
+    font-weight: 700;
 }
 body > main {
     height: 100%;
@@ -355,6 +364,7 @@ li > a:hover {
 }
 .btn {
     transition: opacity 100ms linear, color 100ms linear;
+    font-size: inherit;
 }
 .btn-primary:hover {
     background-color: #222222;
@@ -378,7 +388,7 @@ li > a:hover {
     }
 }
 .col-sm-offset-4 {
-    margin-left: 30%;
+    margin-left: 27%;
 }
 #submit-button.btn-primary {
     background-color: #222222;
@@ -402,8 +412,8 @@ li > a:hover {
     text-align: center;
     text-shadow: none;
     background-color: #222222;
-    top:100px;
-    padding-top:20px;
+    top: 100px;
+    padding-top: 20px;
 }
 .footer-wrapper .footer {
     position: relative;
@@ -426,7 +436,7 @@ li > a:hover {
     width: 100%;
     float: left;
     background: #333;
-    top:70px;
+    top: 70px;
     color: #fff;
     padding: 35px;
     -moz-box-sizing: border-box;
@@ -458,13 +468,14 @@ a:-webkit-any-link {
     text-decoration: underline;
     cursor: auto;
 }
-.dark-footer .footer-wrapper .footer p.copyright {
-    font-family: OstrichSans;
+.footer p.copyright {
+    font-family: "OstrichSans";
     font-style: normal;
     font-size: 18px;
     margin: 0;
+    color: azure;
     font-weight: normal;
-    letter-spacing: 1px;
+    letter-spacing: 3.5px
 }
 .dark-footer .footer-wrapper .footer p.links {
     color: #3C3C3C;
@@ -483,11 +494,8 @@ a:-webkit-any-link {
     font-weight: bold;
     letter-spacing: 1px;
 }
-
 .inner-center {
-    
     padding-bottom: 10px;
-    
 }
 
 /* END */
@@ -559,4 +567,126 @@ a:-webkit-any-link {
         display: none;
     }
 }
-.
+
+/* Loader styling and animations */
+
+$speed: 2.5s;
+.loader {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 175px;
+    height: 75px;
+}
+.loader > span {
+    display: block;
+    background: #222222;
+    width: 7px;
+    height: 3px;
+    border-radius: 14px;
+    margin-right: 5px;
+    float: left;
+    margin-top: 25%;
+    &:last-child {
+        margin-right: 0px;
+    }
+    &:nth-child(1) {
+        animation: load $speed 1.4s infinite linear;
+    }
+    &:nth-child(2) {
+        animation: load $speed 1.2s infinite linear;
+    }
+    &:nth-child(3) {
+        animation: load $speed 1s infinite linear;
+    }
+    &:nth-child(4) {
+        animation: load $speed 0.8s infinite linear;
+    }
+    &:nth-child(5) {
+        animation: load $speed 0.6s infinite linear;
+    }
+    &:nth-child(6) {
+        animation: load $speed 0.4s infinite linear;
+    }
+    &:nth-child(7) {
+        animation: load $speed 0.2s infinite linear;
+    }
+    &:nth-child(8) {
+        animation: load $speed 0s infinite linear;
+    }
+    &:nth-child(9) {
+        animation: load $speed 0.2s infinite linear;
+    }
+    &:nth-child(10) {
+        animation: load $speed 0.4s infinite linear;
+    }
+    &:nth-child(11) {
+        animation: load $speed 0.6s infinite linear;
+    }
+    &:nth-child(12) {
+        animation: load $speed 0.8s infinite linear;
+    }
+    &:nth-child(13) {
+        animation: load $speed 1s infinite linear;
+    }
+    &:nth-child(14) {
+        animation: load $speed 1.2s infinite linear;
+    }
+    &:nth-child(15) {
+        animation: load $speed 1.4s infinite linear;
+    }
+}
+@keyframes load {
+    0% {
+        background: #222222;
+        margin-top: 25%;
+        height: 10px;
+    }
+    50% {
+        background: #444444;
+        height: 15px;
+        margin-top: 0%;
+    }
+    100% {
+        background: #222222;
+        height: 10%;
+        margin-top: 25px;
+    }
+}
+
+/* Overriding bootstrap-select */
+
+.bootstrap-select.btn-group:not(.input-group-btn) {
+    float: left;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+    margin-right: 0;
+}
+.btn-primary {
+    background-color: #222222;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    
+    background-color: #222222;   
+}
+
+.btn-primary:active:hover, .btn-primary.active:hover, .open > .dropdown-toggle.btn-primary:hover, .btn-primary:active:focus, .btn-primary.active:focus, .open > .dropdown-toggle.btn-primary:focus, .btn-primary.focus:active, .btn-primary.active.focus, .open > .dropdown-toggle.btn-primary.focus {
+    
+    background-color: #222222;
+    
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    
+    background-color: #222222;
+    opacity: 0.8;
+    
+}

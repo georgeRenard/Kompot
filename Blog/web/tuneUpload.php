@@ -7,7 +7,7 @@
 
     $userId = $_SESSION['user'];
     $user = DataRetriever::getUserData($userId);
-    
+
     if(!empty($user)){
         
         $userName = $user['name'];
@@ -17,11 +17,18 @@
         
     }else{
         
-        #If data couldn't be retrieved
+        #If data can't be retrieved
+        http_response_code(400);
         
     }
 
-
+    if(isset($_POST['submit-track'])){
+        
+        $tune = new Tune();
+        $tune->uploadToServer();
+        
+    }
+    
 
 ?>
 
@@ -40,11 +47,13 @@
         <title>Upload Tune</title>
 
         <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
         <link type="text/css" rel="stylesheet" href="../css/uploadTuneStyle.css">
 
+        <scirpt src="../scripts/progress.js"></scirpt>
         <script src="../scripts/jquery-3.1.1.min.js"></script>
         <script src="../scripts/bootstrap.js"></script>
-        <scirpt src="../scripts/progress.js"></scirpt>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
 
 
 
@@ -140,22 +149,25 @@
                                 <form id="upload-form" class="upload-form" method="post" enctype="multipart/form-data">
                                     <span class="upload-hidden-label">Select a file</span>
                                     <input class="form-control" type="hidden" name="MAX_FILE_SIZE" value="11000000" />
-                                    <input class="upload-hidden" id="file" type="file" name="file">
+                                    <input class="upload-hidden" id="file" type="file">
 
                                 </form>
-
-                                <script>
-                                    $('input[type=file]').change(function()) {
-                                        
-                                        uploadFile();
-                                            
-                                    }
-                                </script>
-
                             </div>
                         </div>
                     </div>
+                    <!-- Not fucking working :() Damn...                     -->
+                    <script>
+                        $(document).ready(function() {
 
+                            $('#file').change(function() {
+                                $.getScript('../scripts/progress.js').done(function() {
+                                    uploadFile();
+                                });
+                            });
+
+                        });
+
+                    </script>
                     <div class="form-container">
 
                         <form id="data-form" class="form-horizontal" action="tuneUpload.php" method="post">
@@ -175,20 +187,53 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="genre">Genre</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="text" placeholder="Genre" id="genre" name="genre" pattern="^[a-zA-Z\,\-]{3,26}$">
+                                    <select class="selectpicker" data-style="btn-primary" title="Choose one of the following" multiple data-max-options="4">
+                                        <?php
+                                            
+                                            $genres = DataRetriever::getGenres();
+                         
+                                            if(empty($genres)){
+                                                http_response_code(400);
+                                            }
+                         
+                                            foreach($genres as $genre)
+                                            {
+                                                echo "<option>" . $genre['name'] . "</option>";
+                                            }
+                                            
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-offset-4">
                                     <button type="reset" class="btn btn-default">Cancel</button>
-                                    <button id="submit-button" type="submit" class="btn btn-primary">Upload</button>
+                                    <button name="submit-track" id="submit-button" type="submit" class="btn btn-primary">Upload</button>
                                 </div>
 
                             </div>
 
                         </form>
 
+
+                        <div class="loader">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
 
                 </div>

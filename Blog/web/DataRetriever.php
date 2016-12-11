@@ -68,12 +68,15 @@ class DataRetriever
     
     
     
+    public static function getGenres(){
+        
+        $query = "SELECT name FROM genre";
+        $result = DataRetriever::dbQuery($query);
+        return $result;
+        
+    }
+    
 
 
 }
 
-
-
-
-
-?>
