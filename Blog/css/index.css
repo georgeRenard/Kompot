@@ -206,6 +206,65 @@ body .center .inner-center {
     right: -50%;
     position: relative;
 }
+
+.button-fb {
+    background-image: url(../images/facebook.png);
+    font-family: OstrichSans;
+    color: black;
+    font-size: 20px;
+    padding: 4px 20px 4px 28px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid #ffffff 1px;
+    text-decoration: none;
+    outline: none;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    letter-spacing: 1px;
+}
+
+a {
+    color: #669;
+    text-decoration: none;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;
+}
+
+.dark-footer .footer-wrapper .footer p.copyright {
+    font-family: OstrichSans;
+    font-style: normal;
+    font-size: 18px;
+    margin: 0;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.dark-footer .footer-wrapper .footer p.links {
+    color: #3C3C3C;
+}
+
+.dark-footer .footer-wrapper .footer p {
+    color: #ffffff;
+    text-shadow: none;
+    font-size: 18px;
+    margin: 35px 0;
+}
+
+.dark-footer .footer-wrapper .footer p a {
+
+    text-shadow: none;
+    font-size: 20px;
+    margin: 0 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 - @media only screen and (max-width: 322px) {
     #about.button {
         display: none;
@@ -274,4 +333,21 @@ body .center .inner-center {
     100% {
         background-position: 500px 1000px, 200px 400px, -100px 300px;
     }
+}
+
+.button-fb {
+    background-image: url(../images/facebook.png);
+    font-family: OstrichSans;
+    color: black;
+    font-size: 20px;
+    padding: 4px 20px 4px 28px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px
+    border-radius: 5px;
+    border: solid #ffffff 1px;
+    text-decoration: none;
+    outline: none;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    letter-spacing: 1px;
 }

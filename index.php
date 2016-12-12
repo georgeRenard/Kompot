@@ -28,7 +28,7 @@
                 <div class="row" align="right">
                     <div class="col-md-12">
                         <div class="btn-toolbar">
-                            <button class="button" onclick="location.href='Blog/web/login.php'" type="button">Sign Up
+                            <button class="button" onclick="location.href='Blog/web/login.php'" type="button">Sign In
                             </button>
                             <button class="button" onclick="location.href='Blog/web/register.php'" type="button">Register
                             </button>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="links"><a href="#">About</a> | <a href="#">Music</a> | <a href="#">Privacy Policy</a>| <a href="#">Contact</a>| <a href="#">Adidas</a></p>
+                    <p class="links"><a href="#">About</a> | <a href="#">Music</a> | <a href="#">Privacy Policy</a>| <a href="#">Contact</a>| <a href="http://adidas.com">Adidas</a></p>
                     <p class="copyright">&copy; 2042 Kompot of Rhytms. All rights reserved. Made with Suka by TRUE SLAVS |||</p>
                     <p class="copyright">We do not own any of the rights regarding the music we post. It's only for entertainment purposes! True Slavs |||</p>
                 </div>
