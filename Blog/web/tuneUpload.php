@@ -246,12 +246,12 @@
                 <div class="social-links">
                     <div class="center">
                         <div class="inner-center">
-                            <button class="button-fb" onclick="location.href='#'" type="button">&nbsp; FACEBOOK
+                            <button class="button-fb" onclick="location.href='https://www.facebook.com/trueslavs/'" type="button">&nbsp; FACEBOOK
                             </button>
                         </div>
                     </div>
                 </div>
-                <p class="links"><a href="#">About</a> | <a href="#">Music</a> | <a href="#">Privacy Policy</a>| <a href="#">Contact</a>| <a href="#">Adidas</a></p>
+                <p class="links"><a href="aboutUs.html">About Us</a> | <a href="#">Music</a> | <a href="#">Privacy Policy</a>| <a href="#">Contact</a>| <a href="#">Adidas</a></p>
                 <p class="copyright">&copy; 2042 Kompot of Rhytms. All rights reserved. Made with Suka by TRUE SLAVS |||</p>
                 <p class="copyright">We do not own any of the rights regarding the music we post. It's only for entertainment purposes! True Slavs |||</p>
             </div>
