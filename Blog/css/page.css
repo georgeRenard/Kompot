@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    
+    height:100%;
+    width: 100%;
+    background-image: url('../../backgroundWallpaper.jpg');
+    background-size: auto;
+    font-family: "OstrichSans", sans-serif;
+    background-repeat: no-repeat;
+    
+}
