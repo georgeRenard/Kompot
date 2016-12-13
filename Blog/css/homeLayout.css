@@ -1,0 +1,33 @@
+/* Basic HTML Tag styling */
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html {
+    
+    height: 100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    
+}
+
+@font-face {
+    font-family: "OstrichSans";
+    src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);
+}
+
+body{
+
+    height:100%;
+    background-image: url('../../backgroundWallpaper.jpg');
+    background-size: auto;
+    font-family: "OstrichSans", sans-serif;
+    background-repeat: no-repeat;
+    display:flex;
+    flex-direction: column;
+    
+}

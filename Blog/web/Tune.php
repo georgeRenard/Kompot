@@ -6,14 +6,19 @@ class Tune
     
     private $artist;
     private $title;
-    private $genre
+    private $genre;
+    private $path;
+    private $uploader;
         
     
     
-    public function __construct($artist,$title,$genre)
+    public function __construct($artist,$title,$genre,$path,$uploader)
     {
         
-        $this->processData($artist,$title,$genre);
+        $this->genre = SQLite3::escapeString($genre);
+        $this->path = SQLite3::escapeString($path);
+        $this->uploader = SQLite3::escapeString($uploader);
+        $this->processInput($artist,$title);
         
     }
     
@@ -30,21 +35,37 @@ class Tune
     
     public function uploadToServer(){
         
-        #Upload
+        #Timestamp
+        $timestamp = new DateTime();
+        $timestamp = date_format($timestamp,'Y-m-d T H:i:s');
+        
+        #Upload to server
+        $query = "INSERT OR IGNORE INTO music(artist,title,genre,uploaderId,path,upload) VALUES ('$this->artist','$this->title','$this->genre','$this->uploader','$this->path','$timestamp')";
+        
+        #Execute Query
+        
+        $result = $this->dbQuery($query);
+        
+        return !empty($result);
         
     }
 
     
-    private function processInput($artist,$title,$genre)
+    private function processInput($artist,$title)
     {
         
         $artist = trim($artist);
         $artist = strip_tags($artist);
         $artist = htmlspecialchars($artist);
+        $artist = SQLite3::escapeString($artist);
+        $this->artist = $artist;
         
         $title = trim($title);
         $title = strip_tags($title);
-        $title = htmlspecialchars($title);        
+        $title = htmlspecialchars($title); 
+        $title = SQLite3::escapeSTring($title);
+        $this->title = $title;
+        
         
         
     }

@@ -53,6 +53,17 @@ class Logger
         
     }
     
+    public function logAnomaly($anomaly)
+    {
+    
+        if(empty($anomaly)){
+            return;
+        }
+        
+        file_put_contents('../anomaly_logs.txt', $anomaly, FILE_APPEND);
+        
+    }
+    
     
     private function emergencyLogTrace($email,$action,$timestamp,$ip,$clientData)
     {

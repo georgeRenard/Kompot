@@ -1,6 +1,7 @@
 <?php
     require_once('session.php');
     require_once('DataRetriever.php');
+    require_once('tune_finalize.php');
 
     $session = new session();
     $session::isUser();
@@ -18,14 +19,29 @@
     }else{
         
         #If data can't be retrieved
-        http_response_code(400);
+        header('HTTP 1.0/400 Bad Request');
         
     }
 
+    $boo = isset($_POST['submit-track']);
+
     if(isset($_POST['submit-track'])){
         
-        $tune = new Tune();
-        $tune->uploadToServer();
+        $error = false;
+        
+        if(!isset($_SESSION['tune'])) {$error = true;}
+        
+        if(!$error) {
+            
+            $error = tuneFinalize($_SESSION['user']);
+        }
+        
+        if($error) {
+            var_dump($error);
+            
+        }else{
+            header("Location: home.php");
+        }
         
     }
     
@@ -123,7 +139,7 @@
                 <div class="upload-info">
 
                     <div class="upload-progress">
-                        <div class="upload-line">
+                        <div id="upload-line" class="upload-line">
 
                         </div>
                     </div>
@@ -175,19 +191,19 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="artist">Artist</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="text" placeholder="Artist" id="artist" name="artist" pattern="^[a-zA-Z\s]{3,16}$">
+                                    <input class="form-control" required type="text" placeholder="Artist" id="artist" name="artist" pattern="^[a-zA-Z\s]{3,16}$">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="artist">Title</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="text" placeholder="Title" id="title" name="title" pattern="^[a-zA-Z\s]{4,16}$">
+                                    <input class="form-control" required type="text" placeholder="Title" id="title" name="title" pattern="^[a-zA-Z\s]{4,16}$">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="genre">Genre</label>
                                 <div class="col-sm-6">
-                                    <select class="selectpicker" data-style="btn-primary" title="Choose one of the following" multiple data-max-options="4">
+                                    <select class="selectpicker" required name="genre" data-style="btn-primary" title="Choose one of the following" multiple data-max-options="4">
                                         <?php
                                             
                                             $genres = DataRetriever::getGenres();
@@ -241,7 +257,7 @@
 
         </main>
 
-        <footer>
+       <footer>
             <div class="footer">
                 <div class="social-links">
                     <div class="center">

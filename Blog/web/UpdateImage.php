@@ -7,6 +7,7 @@
     #TODO SET-UP A LOGGER
     
     $session = new session();
+    $session::isUser();
 
     function updateImageRequest(){
         
