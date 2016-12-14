@@ -5,29 +5,303 @@
     margin: 0;
     border: 0;
 }
-
 html {
-    
     height: 100%;
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    
 }
-
 @font-face {
     font-family: "OstrichSans";
     src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);
 }
-
-body{
-
-    height:100%;
+body {
+    height: 100%;
     background-image: url('../../backgroundWallpaper.jpg');
-    background-size: auto;
+    background-size: cover;
     font-family: "OstrichSans", sans-serif;
     background-repeat: no-repeat;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    
 }
+.header {
+    width: 100%;
+    height: 70px;
+    opacity: 0.7;
+    background-color: #222222;
+    display: flex;
+    flex-flow: row-reverse;
+}
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.player {
+    width: 640px;
+    height: 130px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(22, 22, 22, 0.7);
+    border-radius: 4px;
+    background-color: #222222;
+    opacity: 0.9;
+    box-shadow: 4px;
+}
+
+.player-container {
+    width: 640px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Player Media ReSIZE */
+
+@media only screen and (max-width: 768px) {
+    .player {
+        width: 540px;
+    }
+}
+@media only screen and (max-width: 640px) {
+    .player {
+        width: 500px;
+    }
+}
+@media only screen and (max-width: 554px) {
+    .player {
+        width: 400px;
+        height: 120px;
+    }
+}
+@media only screen and (max-width: 405px) {
+    .player {
+        width: 320px;
+        height: 110px;
+    }
+}
+@media only screen and (max-width: 310px) {
+    .player {
+        width: 240px;
+        height: 100px;
+    }
+}
+@media only screen and (max-width: 245px) {
+    .player {
+        width: 200px;
+        height: 80px;
+    }
+}
+
+/* END */
+
+.page-feed {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+    height: 100%;
+    width: 70%;
+    padding: 30px;
+    opacity: 0.8;
+}
+@media only screen and (max-width: 1000px) {
+    .page-feed {
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 875px) {
+    .page-feed {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .page-feed {
+        width: 95%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@media only screen and (max-width: 625px) {
+    .page-feed {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.player-control {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid #fff;
+}
+.primary-control {
+    height: 70%;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.secondary-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 30%;
+    width: 100%;
+    align-items: flex-end;
+}
+#waveform.progress {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#waveform.progress[value] {
+    -webkit-appearance: none;
+    color: #0074d9;
+    border: 0;
+}
+#progress.progress {
+    display: none;
+    width: 100%;
+    ;
+    height: 1rem;
+    margin-bottom: 1rem;
+}
+.stop-button {
+    width: 20%;
+    height: 20%;
+    border: 2px solid #222222;
+    background-color: #03c480;
+    cursor: pointer;
+}
+.pause-button {
+    width: 20%;
+    height: 20%;
+    border: 2px solid #222222;
+    background: #03c480;
+    cursor: pointer;
+}
+.play-button {
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 26px solid rgba(174, 169, 164, 1);
+    margin: 40 auto 20 auto;
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    left: 2px;
+}
+.play-button:before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -46px;
+    bottom: -30px;
+    right: -14px;
+    border-radius: 50%;
+    border: 4px solid rgba(174, 169, 164, 1);
+    z-index: 2;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+.play-button:after {
+    content: '';
+    opacity: 0;
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+}
+.play-button:hover,
+.play-button:focus:before {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+}
+.main-control {
+    width: 100%;
+    height: 100%;
+    align-self: flex-end;
+}
+.wavesurfer {
+    width: 100%;
+    height: 110.5px;
+}
+
+.track-info {
+    font-family: "OstrichSans", sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 16px;
+    color: #E9E9E9;
+    width: 100%;
+    height: 17.5px;
+    text-align: center;
+}
+
+.genre-tags-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100%;
+
+}
+
+.genre {
+    list-style: none;
+    margin: 0;
+    overflow: hidden; 
+    padding: 0;
+}
+
+.genre > li {
+    float: left;
+}
+
+.genreTag {
+    background: #E9E9E9;
+    border-radius: 3px 0 0 3px;
+    color: #222222;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 0 10px;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+    font-size: 16px;
+}
+
+.genreTag:after {
+    background-color: #E9E9E9;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #E9E9E9;
+    border-top: 13px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.genreTag:hover {
+    font-weight: bold;
+    background-color: #40D4A2;
+    color: #fff;
+}
+

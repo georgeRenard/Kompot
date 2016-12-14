@@ -2,6 +2,13 @@
     require_once('session.php');
     $session = new session();
 
+    $isUser = false;
+
+    if(isset($_SESSION['user'])){
+        
+        $isUser = true;
+        
+    }
 
 ?>
     <!DOCTYPE html>
@@ -19,10 +26,8 @@
         <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
         <link type="text/css" rel="stylesheet" href="../css/homeLayout.css">
 
-
-        <script type="text/jscript" href="Blog/scripts/bootstrap.js"></script>
-        <script type="text/jscript" href="Blog/scripts/jquery-3.1.1.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+        <script src="../scripts/jquery-3.1.1.min.js"></script>
+        <script src="../scripts/bootstrap.js"></script>
 
         <title>Home</title>
     </head>
@@ -30,39 +35,70 @@
     <body>
 
         <header>
-            <div class="header">
-                <a href="logOut.php">Log Out</a>
-                <a href="tuneUpload.php">Upload</a>
-                <a href="userAccount.php">My Profile</a>
-            </div>
+           <?php
+            if($isUser){
+                echo "<div class=\"header\">";
+                    echo "<div class=\"downpointer\">";
+
+                    echo "</div>";
+                    echo "<div class=\"user-bubble\">";
+
+                    echo "</div>";
+                    echo "<div class=\"burger\">";
+
+                    echo "</div>";
+                echo "</div>";
+            }
+            ?>
         </header>
         <main>
-            <div class="player">
-                <div class="player-control">
-                    <div class="primary-control">
-                        <button class="play-button"></button>
-                    </div>
+           <div class="genre-slider">
+               <div>
+                   <!-- Yet to be made -->
+               </div>
+           </div>
+            <div class="page-feed">
+               <!-- Player template -->
+                <div class="player-container">
+                    <div class="player">
+                        <div class="player-control">
+                            <div class="primary-control">
+                                <a id="play-button" href="#" title="Play button" class="play-button"></a>
+                            </div>
 
-                    <div class="secondary-control">
-                        <div class="stop">
-                            <button class="stop-button"></button>
+                            <div class="secondary-control">
+
+                                <div onclick="wavesurfer.pause()" class="stop-button">
+
+                                </div>
+
+                                <div onclick="wavesurfer.stop()" class="pause-button">
+
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="pause">
-                            <button class="pause-button"></button>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+                        <div class="main-control">
+                           <div class="track-info">
+                               Rae Sremmurd - No Type
+                           </div>
+                            <progress id="progress" class="progress" value="100" max="100"></progress>
+                            <div id="waveform" class="wavesurfer">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="main-control">
-                    <div clss="track-info">
-                        <canvas>
-
-                        </canvas>
+                    <div class="genre-tags-container">
+                        <ul class="genre">
+                            <li><a class="genreTag" href="#">Hip Hop</a></li>
+                            <li><a class="genreTag" href="#">Progressive House</a></li>
+                        </ul>
                     </div>
-
-                    <div id="waveform" class="wavesurfer">
+                    <div class="tune-control">
                         
                     </div>
                 </div>
+                <!-- Player template END -->
             </div>
         </main>
 
@@ -71,6 +107,31 @@
 
 
         </footer>
+        <script>
+            var wavesurfer = WaveSurfer.create({
+                container: '#waveform',
+                waveColor: '#E8E8E8',
+                height: '100',
+                progressColor: '#40D4A2',
+                backend: 'MediaElement',
+                barWidth: 3,
+
+            });
+
+            console.log(wavesurfer);
+
+            wavesurfer.load("../Rae Sremmurd - No Type.mp3");
+
+            wavesurfer.on('loading', function(percents) {
+                document.getElementById('progress').value = percents;
+            });
+
+            $("#play-button").on("click", function() {
+                wavesurfer.play();
+            });
+
+        </script>
+
 
     </body>
 
