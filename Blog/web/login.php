@@ -9,7 +9,7 @@
     $session::checkLogin();
 
     $error = false;
-
+    
     if(isset($_POST['btn-submit']))
     {
         
@@ -70,58 +70,47 @@
 
     <title>Login Test</title>
 
-    <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
-    <link type="text/css" rel="stylesheet" href="../css/callbacks.css">
+    
+     <link type="text/css" rel="stylesheet" href="../css/loginpage.css">
+ <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
+     
+    
+    <script src="../scripts/bootstrap.js"></script>
+    <script src="../scripts/jquery-3.1.1.min.js"></script>
+   
 
-    <script type="text/jscript" href="../scripts/bootstrap.js"></script>
-    <script type="text/jscript" href="../scripts/jquery-3.1.1.js"></script>
 
 </head>
 
 <body>
 
-    <header>
-
-
-
-    </header>
-
-    <main>
-        <div class="container body-content span=8 offset=2">
-            <div class="well">
-                <form class="form-horizontal" action="login.php" method="post" autocomplete="off">
-                    <legend>Login</legend>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_email">Email</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required type="email">
-                        </div>
-                    </div>
-                   
-                    
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_password">Password</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required>
-                        </div>
-                    </div>
-                   
-                    <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="index.html">Cancel</a>
-                            <button type="submit" class="btn btn-primary" name="btn-submit">Login</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-
-
-
-    </footer>
+    
+    
+    <div class="wrapper">
+	<div class="container">
+		<h1>Welcome</h1>
+		
+		<form class="form" method="post" action="login.php">
+			 <input  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required type="email">
+			<input type="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required>
+			<button type="submit" id="login-button" name="btn-submit">Login</button>
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+  
 
 </body>
 
