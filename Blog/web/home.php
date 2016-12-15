@@ -1,13 +1,16 @@
 <?php date_default_timezone_set("Europe/Sofia");
     require_once('session.php');
+    require_once('DataRetriever.php');
+
     $session = new session();
 
     $isUser = false;
+    $isAdmin = false;
 
     if(isset($_SESSION['user'])){
         
         $isUser = true;
-        
+        $isAdmin = DataRetriever::isAdmin($_SESSION['user']);
     }
 
 ?>
@@ -35,30 +38,66 @@
     <body>
 
         <header>
-           <?php
+            <?php
             if($isUser){
+                $imageDir = "../bubble_avatar/" . "user_" . $_SESSION['user'];
+                
                 echo "<div class=\"header\">";
                     echo "<div class=\"downpointer\">";
-
+                        
                     echo "</div>";
                     echo "<div class=\"user-bubble\">";
-
+                        echo "<img width=\"64\" height=\"64\" src=" . $imageDir . ">";
                     echo "</div>";
-                    echo "<div class=\"burger\">";
-
-                    echo "</div>";
+                echo "</div>";
+            }else {
+                #<!-- Sign in / Register -->
+                echo "<div class=\"\">";
                 echo "</div>";
             }
             ?>
         </header>
         <main>
-           <div class="genre-slider">
-               <div>
-                   <!-- Yet to be made -->
-               </div>
-           </div>
+            <div class="genre-slider">
+                <?php
+                    if($isAdmin){
+                        echo "<div class=\"create-genre\">";
+                            echo "<div class=\"button-genre\">";
+                        
+                            echo "</div>";
+                        echo "</div>";
+                        
+                        echo "<div class=\"slide-left-admin\" onclick=\"location.href='create-genre.php'\">";
+                            echo "<div class=\"button-prev\">";
+                        
+                            echo "</div>";
+                        echo "</div>";
+                    }else
+                    {
+                        echo "<div class=\"slide-left\">";
+                            echo "<div class=\"button-prev\">";
+                            echo "</div>";
+                        echo "</div>";
+                    }
+                ?>
+                    <div class="actual-image-container">
+                        <!-- Yet to be made -->
+                        <ul>
+                        <?php
+                             #$wallpaper;
+                        #echo <li></li>
+                        ?>
+                        </ul>
+                    </div>
+                    <div class="slide-right">
+                        <div class="button-next">
+                            
+                        </div>
+                    </div>
+            </div>
+
             <div class="page-feed">
-               <!-- Player template -->
+                <!-- Player template -->
                 <div class="player-container">
                     <div class="player">
                         <div class="player-control">
@@ -80,9 +119,9 @@
                         </div>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
                         <div class="main-control">
-                           <div class="track-info">
-                               Rae Sremmurd - No Type
-                           </div>
+                            <div class="track-info">
+                                Rae Sremmurd - No Type
+                            </div>
                             <progress id="progress" class="progress" value="100" max="100"></progress>
                             <div id="waveform" class="wavesurfer">
                             </div>
@@ -95,7 +134,7 @@
                         </ul>
                     </div>
                     <div class="tune-control">
-                        
+
                     </div>
                 </div>
                 <!-- Player template END -->

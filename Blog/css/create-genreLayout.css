@@ -1,0 +1,128 @@
+* {
+    
+    margin: 0;
+    padding: 0;
+    border: 0;
+    
+}
+
+@font-face {
+    font-family: "OstrichSans";
+    src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);
+}
+
+html {
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    
+    background-image: url('../../backgroundWallpaper.jpg');
+    background-size: cover;
+    font-family: "OstrichSans", sans-serif;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+    opacity: 0.7;
+    background-color: #222222;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+
+.downpointer {
+    content: '';
+    margin-left: 30px;
+    margin-top: 5px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-left: 8px solid rgba(232, 232, 232, 1);
+    border-bottom: 8px solid rgba(232, 232, 232, 1);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    z-index: 2;
+    line-height: 60px;
+    color: white;
+    cursor: pointer;
+}
+
+.downpointer:hover {
+    border-left: 8px solid rgba(232, 232, 232, 0.8);
+    border-bottom: 8px solid rgba(232, 232, 232, 0.8);
+}
+
+.user-bubble {
+    
+    width: 64px;
+    height: 64px;
+    margin-left: 20px;
+    
+}
+
+img {
+    
+    border: 1px solid rgba(232,232,232,1);
+    border-radius: 50%;
+}
+
+main {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.form-container { 
+
+    width: 30%;
+    height: 40%;
+    
+}
+
+form {
+
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(22,22,22,0.7);
+    padding: 30px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-radius: 5px;
+    background: rgba(22,22,22,0.6);
+    box-shadow: 0 0 13px 3px rgba(22,22,22,0.6);
+    -webkit-box-shadow: 0 0 13px 3px rgba(22,22,22,0.6);
+    -moz-box-shadow: 0 0 13px 3px rgba(22,22,22,0.6);
+    overflow: hidden;
+    
+}
+
+form input {
+    
+}
+
+.group {
+    margin-top: 20px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}

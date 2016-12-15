@@ -37,7 +37,7 @@
         }
         
         if($error) {
-            var_dump($error);
+            http_response_code(400);
             
         }else{
             header("Location: home.php");

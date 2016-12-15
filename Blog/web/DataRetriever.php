@@ -9,6 +9,10 @@ class DataRetriever
 {
     
     
+    private static function escape($str){
+        return SQLite3::escapeString($str);
+    }
+    
     #DB Query function
     private static function dbQuery($query="")
     {
@@ -43,7 +47,7 @@ class DataRetriever
     
     public static function getUserId($email){
      
-        $email = SQLite3::escapeString($email);
+        $email = DataRetriever::escape($email);
         
         $query = "SELECT id FROM users WHERE email = '$email'";
         $result = DataRetriever::dbQuery($query);
@@ -55,7 +59,7 @@ class DataRetriever
     
     public static function getPendingUser($token){
         
-        $token = SQLite3::escapeString($token);
+        $token = DataRetriever::escape($token);
         
         $query = "SELECT * FROM pending_user WHERE token = '$token'";
         
@@ -73,6 +77,17 @@ class DataRetriever
         $query = "SELECT name FROM genre";
         $result = DataRetriever::dbQuery($query);
         return $result;
+        
+    }
+    
+    public static function isAdmin($userId) {
+        
+        $userId = DataRetriever::escape($userId);
+        $query = "SELECT role FROM users WHERE id = '$userId'";
+        
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result[0]['role'] == 2;
         
     }
     
