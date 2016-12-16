@@ -274,4 +274,31 @@ Stack trace:
 #1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
 Stack trace:
 #0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
+#1 {main}exception 'InvalidArgumentException' with message 'Invalid config path 'D:\apache\htdocs\Config.ini'' in D:\apache\htdocs\Intrusion Detection System\lib\IDS\Init.php:97
+Stack trace:
+#0 D:\apache\htdocs\phpids.php(24): IDS\Init::init('D:\\apache\\htdoc...')
 #1 {main}

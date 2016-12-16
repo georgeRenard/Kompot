@@ -74,8 +74,12 @@ class DataRetriever
     
     public static function getGenres(){
         
-        $query = "SELECT name FROM genre";
+        $query = "SELECT wallpaper FROM genre";
         $result = DataRetriever::dbQuery($query);
+        
+        if(empty($result)){
+            return $result;
+        }
         return $result;
         
     }
@@ -88,6 +92,17 @@ class DataRetriever
         $result = DataRetriever::dbQuery($query);
         
         return $result[0]['role'] == 2;
+        
+    }
+    
+    public static function getGenreThumbnail($name){
+        
+        $name = SQLite3::escapeString($name);
+        $query = "SELECT wallpaper FROM genre WHERE name = '$name'";
+        
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result[0]['wallpaper'];
         
     }
     

@@ -15,11 +15,9 @@ class Genre
         $action = SQLite3::escapeString($action);
         $this->processInput($name,$wallpaper,$action);
         
-        $this->decideAction($action);
-        
     }
     
-    private function processInput($name,$wallpaper){
+    private function processInput($name,$wallpaper,$action){
         $name = trim($name);
         $name = strip_tags($name);
         $this->name = htmlspecialchars($name);
@@ -45,28 +43,32 @@ class Genre
         
     }
     
-    private function manage(){
+    public function manage($action){
+        
+        $result = false;
         
         switch($this->action){
                 
             case 'Create':
-                $this->createNew();
+                $result = $this->createNew();
                 break;
             case 'Delete':
-                $this->deleteCurrent();
+                $result = $this->deleteCurrent();
                 break;
             case 'Edit':
-                $this->editCurrent();
+                $result = $this->editCurrent();
                 break;
                 
         }
+        
+        return $result;
         
     }
     
     private function exists()
     {
         
-        $query = "SELECT name FROM genre WHERE name= '$this->name'";
+        $query = "SELECT * FROM genre WHERE name='$this->name'";
         
         $result = $this->dbQuery($query);
         
@@ -75,25 +77,27 @@ class Genre
     }
 
     
-    public function createNew()
+    private function createNew()
     {
         
-        $query = "INSERT OR IGNORE INTO genre(name,wallpaper) VALUES ('$name,'$wallpaper')";
+        $query = "INSERT OR IGNORE INTO genre(name,wallpaper) VALUES('$this->name','$this->wallpaper')";
         
-        if(!$this->exists()){
-            $result = $this->dbQuery($query);
+        if($this->exists()){
+            return false;
         }
         
+        $result = $this->dbQuery($query);
+        return $result;
         
     }
     
-    public function editCurrent(){
+    private function editCurrent(){
         
         
         
     }
     
-    public function deleteCurrent(){
+    private function deleteCurrent(){
     
     }   
     

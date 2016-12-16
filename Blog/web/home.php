@@ -24,13 +24,12 @@
         <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Coming Soon</title>
-
         <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
         <link type="text/css" rel="stylesheet" href="../css/homeLayout.css">
 
         <script src="../scripts/jquery-3.1.1.min.js"></script>
         <script src="../scripts/bootstrap.js"></script>
+        <script src="../scripts/thumbnail-slider.js"></script>
 
         <title>Home</title>
     </head>
@@ -59,42 +58,61 @@
         </header>
         <main>
             <div class="genre-slider">
+
+                <div id="thumbnail-slider">
                 <?php
                     if($isAdmin){
                         echo "<div class=\"create-genre\">";
-                            echo "<div class=\"button-genre\">";
+                            echo "<div class=\"button-genre\" onclick=\"location.href='create-genre.php'\" >";
                         
                             echo "</div>";
                         echo "</div>";
                         
-                        echo "<div class=\"slide-left-admin\" onclick=\"location.href='create-genre.php'\">";
-                            echo "<div class=\"button-prev\">";
+                        echo "<div id=\"left\" class=\"slide-left-admin\">";
+                            //echo "<div class=\"\">";
                         
-                            echo "</div>";
+                            //echo "</div>";
                         echo "</div>";
                     }else
                     {
-                        echo "<div class=\"slide-left\">";
-                            echo "<div class=\"button-prev\">";
-                            echo "</div>";
+                        echo "<div id=\"left\" class=\"slide-left\">";
+                            //echo "<div class=\"button-prev\">";
+                            //echo "</div>";
                         echo "</div>";
                     }
                 ?>
-                    <div class="actual-image-container">
-                        <!-- Yet to be made -->
-                        <ul>
-                        <?php
-                             #$wallpaper;
-                        #echo <li></li>
-                        ?>
-                        </ul>
-                    </div>
-                    <div class="slide-right">
-                        <div class="button-next">
+                        <div class="inner">
+                            <!-- Yet to be made -->
+                            <ul>
+                                <?php
+                            $genres = DataRetriever::getGenres();
+                            if(!empty($genres)){
                             
+                            foreach($genres as $genre)
+                            {
+    
+                                echo "<li class=\"\" ><img class=\"thumb\" src=\"" . $genre['wallpaper'] ."\" style=\"height:auto;\" />";
+                                echo "<div class=\"nail\">";
+                                
+                                if($isAdmin){
+                                    echo "<div class=\"genre-edit\" onclick=\"genreManage()\"></div>";
+                                    echo "<div class=\"genre-delete\" onclick=\"genreManage()\"></div>";
+                                }
+                                
+                                echo "</div>";
+                            }
+                            }
+                        ?>
+                            </ul>
                         </div>
-                    </div>
+                        <div id="right" class="slide-right">
+                            <div id="buttn" class="">
+
+                            </div>
+                        </div>
+                </div>
             </div>
+
 
             <div class="page-feed">
                 <!-- Player template -->

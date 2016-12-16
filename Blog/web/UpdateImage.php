@@ -123,7 +123,7 @@
         
         #Managing POST file request
         if(!isset($_FILES)){
-            exit;
+            return array('isValid' => true , 'errorMsg' => 'Select a file and try again.');
         }
         
         #Managing FILE data
@@ -147,16 +147,15 @@
         } 
 
         $directory = "../genre_thumbs/";
-        $newExt = explode('/',$extension)[1];
-        $newName = uniqid($fileName) . $newExt;
+        $newName = sha1($_POST['name']);
         
         $thumbnail = $directory . $newName;
         
-        if(!move_uploaded_file($_FILES['thumbnail']['temp_name'], $thumbnail)){
+        if(move_uploaded_file($_FILES['thumbnail']['tmp_name'], $thumbnail)){        
+            $resizeSuccessful = smart_resize_image($thumbnail,null,200,200);
+        }else {
             return array('isValid' => false , 'errorMsg' => "Bad Request! Please , try one more time");
         }
-        
-        $resizeSuccessful = smart_resize_image($thumbnail,null,200,200);
         
         if(!$resizeSuccessful){
             return array('isValid' => false , 'errorMsg' => "Bad Request! Please , try one more time");

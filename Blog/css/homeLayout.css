@@ -33,7 +33,6 @@ body {
     flex-flow: row;
     align-items: center;
 }
-
 .downpointer {
     content: '';
     margin-left: 30px;
@@ -51,26 +50,19 @@ body {
     color: white;
     cursor: pointer;
 }
-
 .downpointer:hover {
     border-left: 8px solid rgba(232, 232, 232, 0.8);
     border-bottom: 8px solid rgba(232, 232, 232, 0.8);
 }
-
 .user-bubble {
-    
     width: 64px;
     height: 64px;
     margin-left: 20px;
-    
 }
-
 img {
-    
-    border: 1px solid rgba(232,232,232,1);
+    border: 1px solid rgba(232, 232, 232, 1);
     border-radius: 50%;
 }
-
 main {
     width: 100%;
     height: 100%;
@@ -90,6 +82,11 @@ main {
     opacity: 0.9;
     box-shadow: 4px;
 }
+
+img.thumb {
+    border-radius: 0;
+}
+
 .player-container {
     width: 640px;
     height: 160px;
@@ -305,6 +302,13 @@ main {
 .genre > li {
     float: left;
 }
+#thumbnail-slider div.inner {
+    position: relative;
+    overflow: hidden;
+    padding: 2px 0;
+    margin: 0;
+    background-color: rgba(232,232,232,0.4);
+}
 .genreTag {
     background: #E9E9E9;
     border-radius: 3px 0 0 3px;
@@ -362,11 +366,18 @@ a:active {
     flex-direction: row;
     flex-wrap: nowrap;
 }
-.actual-image-container {
-    width: 80%;
-    height: 100%;
-    padding: 15px;
-    background-color: rgba(232, 232, 232, 0.5);
+#thumbnail-slider {
+    background-color: transparent;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    margin:0 auto; /*center-aligned*/
+    width:100%;/*width:400px;*/
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    box-sizing:border-box;
+    position:relative;
+    -webkit-user-select: none;
+    user-select:none;
 }
 .slide-left-admin {
     width: 5%;
@@ -393,8 +404,8 @@ a:active {
     align-content: center;
     align-items: center;
 }
-.button-prev,
-.button-next {
+#thumbnail-slider-prev,
+#thumbnail-slider-next {
     content: '';
     display: block;
     width: 20px;
@@ -408,18 +419,23 @@ a:active {
     line-height: 60px;
     color: white;
 }
-.button-prev {
+#thumbnail-slider-prev {
     -ms-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
-.button-prev.disabled,
-.button-next.disabled {
+#thumbnail-slider-prev.disabled,
+#thumbnail-slider-next.disabled {
+    border-top: 10px solid rgba(22, 22, 22, 0.3);
     border-left: 10px solid rgba(22, 22, 22, 0.3);
-    border-right: 10px solid rgba(22, 22, 22, 0.3);
 }
-.slide-left:hover {
-    background-color: rgba(232, 232, 232, 0.3);
+#thumbnail-slider-prev:hover {
+    border-top: 10px solid rgba(22, 22, 22, 0.3);
+    border-left: 10px solid rgba(22, 22, 22, 0.3);
+}
+#thumbnail-slider-next:hover {
+    border-top: 10px solid rgba(22, 22, 22, 0.3);
+    border-left: 10px solid rgba(22, 22, 22, 0.3);
 }
 .create-genre {
     width: 5%;
@@ -448,4 +464,67 @@ a:active {
 }
 .slide-right:hover {
     background-color: rgba(232, 232, 232, 0.3);
+}
+#thumbnail-slider div.inner ul {
+    white-space:nowrap;
+    position:relative;
+    left:0; top:0;
+    list-style:none;
+    font-size:0;
+    padding:0;
+    margin:0;
+    float:left!important;
+    width:auto!important;
+    height:auto!important;
+}
+#thumbnail-slider ul li {
+    display:inline-block;
+    *display:inline!important; /*IE7 hack*/
+    border:3px solid rgba(232,232,232,0.6);
+    margin:0;
+    margin-right:10px; /* Spacing between thumbs*/
+    transition:border-color 0.3s;
+    box-sizing:content-box;
+    text-align:center;
+    vertical-align:middle;
+    padding:0;
+    position:relative;
+    list-style:none;
+    backface-visibility:hidden;
+}
+#thumbnail-slider ul li.active {
+    border-color: rgba(22, 22, 22, 0.3);
+}
+#thu#thumbnail-slider .thumb {
+    opacity:1;
+    width:100%;
+    height: 100%;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center center;
+    display:block;
+    position:absolute;
+    font-size:0;
+}
+
+.nail {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(232,232,232,0);
+}
+
+.nail:hover {
+    background-color: rgba(232,232,232,0.2);
+}
+
+@media only screen and (max-width:736px) {
+    #thumbnail-slider {
+        padding: 10px 26px;
+    }
+    #thumbnail-slider-prev {
+        left: 0px;
+    }
+    #thumbnail-slider-next {
+        right: 0px;
+    }
 }

@@ -13,34 +13,41 @@
     }
 
     #ACTION to perform
-    $actionChange = false;
+    $action = 'Create';
     $imageDir = "../bubble_avatar/" . "user_" . $_SESSION['user'];
-
+    
     if(isset($_SESSION['genre'])){
-        $actionChange = true;
+        
+        $action = $_SESSION['genre']['action'];
+        $wallpaper = DataRetriever::getGenreThumbnail($_SESSION['genre']['name']);
+        
     }
+
     
     if(isset($_POST['genre-create'])) {   
         
-        $action = 'Create';
-        
-        if($actionChange){
-            $action = $_SESSION['genre'];
-            session_destroy($_SESSION['genre']);
+        if(isset($_FILES)){
+            #Resizing image if possible
+            $result = imageResizeToThumbnail();
         }
-        
-        #Resizing image if possible
-        $result = imageResizeToThumbnail();
         
         #Send to server
         if($result['isValid']){
-            
+            $wallpaper = $result['filepath'];
             #New Genre
-            $genre = new Genre($_POST['name'],$_POST['wallpaper'],$action);
+            $genre = new Genre($_POST['name'],$wallpaper,$action);
             
             #It decides for itself wether it should perform EDIT/DELETE/CREATE action
-            $genre->manage();
-            
+            $manageResult = $genre->manage($action);
+            if(!$manageResult){
+                header("Location: home.php");
+                session_destroy($_SESSION['genre']);
+                exit;
+            }else {
+                if($action == 'Create'){
+                    unlink($wallpaper);
+                }
+            }
         }
         
     }
@@ -85,22 +92,26 @@
 
         <main>
             <div class="form-container">
-                <form method="post" action="create-genre.php">
+                <form enctype="multipart/form-data" method="post" action="create-genre.php">
                     <div class="group">
                         <label class="form-label" for="genre-name">Name</label>
                         <input required type="text" placeholder="Name" id="genre-name" name="name" pattern="^([a-zA-Z\s]+){3,20}$">
                     </div>
-                    <div class="group">
-                        <input type="file">
-                    </div>
-                    <div>
+    
+                    <?php
+                        if(!($action == 'delete')){
+                        echo "<div class=\"group\">";
+                            echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"1048576\" />";
+                            echo "<input type=\"file\" name=\"thumbnail\">";
+                        echo "</div>";
+                        }
+                    ?>
                         <div class="group">
-                            <button name="cancel" type="reset">Cancel</button>
-                            <button name="genre-create" type="submit">
+                            <button class="btn btn-default" name="cancel" type="reset">Cancel</button>
+                            <button class="btn btn-primary" name="genre-create" type="submit">
                                 <?php if(!isset($_SESSION['genre'])){ echo 'Create'; } else { echo $_SESSION['genre'];}?>
                             </button>
                         </div>
-                    </div>
                 </form>
             </div>
         </main>
