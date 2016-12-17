@@ -74,77 +74,47 @@
 
         <title>Register Test</title>
 
-        <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
-        <link type="text/css" rel="stylesheet" href="../css/callbacks.css">
-        <link type="text/css" rel="stylesheet" href="../css/hide-scale-form.css">
-        <link type="text/css" rel="stylesheet" href="../css/registerLayout.css">
+        
+        <link type="text/css" rel="stylesheet" href="../css/registerpage.css">
 
         <script type="text/jscript" href="../scripts/bootstrap.js"></script>
         <script type="text/jscript" href="../scripts/jquery-3.1.1.js"></script>
 
     </head>
 
-    <body background="../../backgroundWallpaper.jpg">
+    <body>
 
-        <header>
+        <div id="snow"></div>
+    
+    <div class="wrapper">
+	<div class="container">
+		<h1>Register</h1>
+		
+		<form class="form" method="post" action="register.php" autocomplete="off">
+			 <input  pattern="^[a-z0-9_-]{6,16}$" id="user_name" placeholder="User Name" name="name"  type ="text" required>
+			<input type ="email"  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required>
+           <input type ="email"  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_emailConfirm" placeholder="Confirm Email" name="confirmEmail"  required  >
+          <input  type ="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required >
+            <input  type ="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password_confirm" placeholder="Confirm Password" name="confirmPassword" required >
 
-
-
-        </header>
-
-        <main>
-            <div class="container body-content span=8 offset=2">
-                <div class="well">
-                    <legend>Register</legend>
-                    <form class="form-horizontal" action="register.php" method="post" autocomplete="off">
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_name">Name</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" id="user_name" placeholder="Name" name="name" required type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_email">Email</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required type="email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_emailConfirm">Confirm Email</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_emailConfirm" placeholder="Confirm Email" name="confirmEmail" required type="email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_password">Password</label>
-                            <div class="col-sm-4">
-                                <input type="password" class="form-control" pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_password_confirm">Confirm Password</label>
-                            <div class="col-sm-4">
-                                <input type="password" class="form-control" pattern="^[a-zA-Z0-9_-]{6,16}$" name="confirmPassword" id="user_password_confirm" placeholder="Confirm Password" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <a class="btn btn-default" href="index.html">Cancel</a>
-                                <button type="submit" class="btn btn-primary" name="btn-submit">Register</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-
-
-
-        </footer>
-
+            <button type="submit" id="NQMA TAKOVA OBOBOBO" name="btn-submit">Register</button>
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+  
     </body>
     
     <script>
