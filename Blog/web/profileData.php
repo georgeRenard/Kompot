@@ -1,10 +1,30 @@
 <?php
     require_once('session.php');
+    require_once('Profiler.php');
     
     $session = new session();
+    $session::isUser();
 
+    
     #TODO: CREATE A WAY TO FETCH A SIDEBAR WITH GENRES AND WHEN THE USER CHOOSES ONE OF THEM IT AUTOMATICALLY APPENDS 
     #TO THE REST IN THE TEXTBOX
+    
+    
+    if(isset($_POST['btn-submit'])){
+        
+        $error = false;
+        
+        $profile = new Profiler($_SESSION['user'],$_POST['country'],$_POST['city'],$_POST['genres'],$_POST['gender']);
+        $noError = $profile->saveProfileData();
+        
+        if($noError){
+            header("Location: home.php");
+            exit;
+        }
+        
+    }
+
+
 
 ?>
 
@@ -48,29 +68,30 @@
             <div class="container body-content span=8 offset=2">
                 <div class="well">
                     <legend>Additional User Data</legend>
-                    <form class="form-horizontal" action="register.php" method="post" autocomplete="off">
+                    <form class="form-horizontal" action="profileData.php" method="post" autocomplete="off">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_name">Country</label>
+                            <label class="col-sm-4 control-label" for="user_country">Country</label>
                             <div class="col-sm-4">
-                                <input class="form-control" id="user_name" placeholder="Country" name="name" required type="text">
+                                <input pattern="^[A-Za-z\s]{3,22}$" autocomplete="off" class="form-control" id="user_country" placeholder="Country" name="country" required type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_email">City</label>
+                            <label class="col-sm-4 control-label" for="user_city">City</label>
                             <div class="col-sm-4">
-                                <input class="form-control" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="City" name="email" required type="email">
+                                <input autocomplete="off" class="form-control" pattern="^[A-Za-z\s]{3,16}$" id="user_city" placeholder="City" name="city" required type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_emailConfirm">Genres</label>
+                            <label class="col-sm-4 control-label" for="user_genres">Genres</label>
                             <div class="col-sm-4">
-                                <input class="form-control" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_emailConfirm" placeholder="Your Favourite Genres" name="confirmEmail" required type="email">
+                               <!-- Select to be implemented -->
+                                <input class="form-control" autocomplete="off" id="user_genres" placeholder="Your Favourite Genres" name="genres" required type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_emailConfirm">Gender</label>
+                            <label class="col-sm-4 control-label" for="user_gender">Gender</label>
                             <div class="col-sm-4">
-                                <select class="dropdown-select">
+                                <select name="gender" id="user_gender" class="dropdown-select">
                                     <option value="">Select…</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -81,7 +102,7 @@
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-4">
                                 <a class="btn btn-default" href="index.html">Cancel</a>
-                                <button type="submit" class="btn btn-primary" name="btn-submit">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="btn-submit">Save</button>
                             </div>
                         </div>
                     </form>

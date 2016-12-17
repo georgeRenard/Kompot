@@ -1,7 +1,7 @@
 function progressHandler(event) {
 
     var percentage = (event.loaded / event.total) * 100;
-    document.getElementById('upload-line').style.width = percentage + "%";
+    document.getElementById('upload-line').width = percentage;
     document.getElementById("progress-label").innerHTML = Math.round(percentage) + "% uploaded...";
 
 }

@@ -33,6 +33,16 @@ body {
     flex-flow: row;
     align-items: center;
 }
+
+.header-non-user {
+    width: 100%;
+    height: 70px;
+    opacity: 0.7;
+    background-color: #222222;
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+}
 .downpointer {
     content: '';
     margin-left: 30px;
@@ -71,6 +81,96 @@ main {
     align-content: center;
     align-items: center;
 }
+footer {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.tune-control {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-items:center;
+}
+
+.player-bottom {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.button-delete-tune {
+    height: 26px;
+    width: 30px;
+    text-decoration: none;
+    margin-top: 1px;
+    border: 1px solid rgba(22,22,22,0.7);
+    display: block;
+    border-radius: 3px;
+    margin-left: 2px;
+    background-image: linear-gradient(to bottom right, rgba(22,22,22,0.35), rgba(232,232,232,0.35));
+}
+
+.button-delete-tune span {
+    background: url('../images/delete.png') no-repeat;
+    width: 30px;
+    height: 26px;
+    background-size: cover;
+    position: absolute;
+    background-position: center;
+}
+
+.button-add-to-playlist {
+    
+    margin-top: 1px;
+    text-decoration: none;
+    width: 30px;
+    height: 26px;
+    border: 1px solid rgba(22,22,22,0.7);
+    display: block;
+    border-radius: 3px;
+    margin-left: 2px;
+    background-image: linear-gradient(to bottom right, rgba(22,22,22,0.35), rgba(232,232,232,0.35));
+}
+
+.button-add-to-playlist span {
+    background: url('../images/addtoplaylist.png') no-repeat;
+    width: 30px;
+    height: 26px;
+    background-size: cover;
+    position:absolute;
+    background-position: center;
+}
+
+.button-add-to-playlist span.added {
+    background: none;
+}
+
+.button-listen {
+    
+    width: 30px;
+    height: 26px;
+    margin-top: 1px;    
+    text-decoration: none;
+    border: 1px solid rgba(22,22,22,0.7);
+    border-radius: 3px;
+    background-image: linear-gradient(to bottom right, rgba(22,22,22,0.35), rgba(232,232,232,0.35));
+}
+
+.button-listen span {
+    background: url('../images/listen.png') no-repeat;
+    background-size:cover;
+    width: 30px;
+    height: 26px;
+    position: absolute;
+    background-position: center;
+}
+
 .player {
     width: 640px;
     height: 130px;
@@ -254,6 +354,21 @@ img.thumb {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
 }
+
+img.button-genre {
+   border-radius: 0;
+   width:20px;
+   height: 20px;
+   border: 0;
+   opacity: 0.6;
+   filter:alpha(opacity=0.6);
+}
+
+img.button-genre:hover {
+    opacity: 0.3;
+    filter:alpha(opacity=0.3);
+}
+
 .play-button:after {
     content: '';
     opacity: 0;
@@ -390,7 +505,7 @@ a:active {
     align-content: center;
     align-items: center;
 }
-.slide-left-admin:hover {
+.slide-left-admin:hover , .slide-left:hover {
     background-color: rgba(232, 232, 232, 0.3);
 }
 .slide-left {
@@ -510,11 +625,12 @@ a:active {
 .nail {
     height: 100%;
     width: 100%;
-    background-color: rgba(232,232,232,0);
+    background-color: rgba(232,232,232,1);
 }
 
 .nail:hover {
-    background-color: rgba(232,232,232,0.2);
+    background-color: rgba(232,232,232,1);
+    z-index:3;
 }
 
 @media only screen and (max-width:736px) {
@@ -527,4 +643,126 @@ a:active {
     #thumbnail-slider-next {
         right: 0px;
     }
+}
+
+.button {
+    font-family: OstrichSans;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 8px 18px 8px 18px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: Transparent;
+    border: solid #ffffff 1px;
+    text-decoration: none;
+    outline: none;
+    margin-right: 10px;
+}
+.btn:focus,
+.btn:active {
+    outline: none !important;
+}
+.button:hover {
+    background: Transparent;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 0 6px rgba(232,232,232,1);
+}
+
+
+/* Side Menu */
+
+.side-menu::before {
+    width: 0;
+    height: 0;
+    display: block;
+    content: '';
+    position: absolute;
+    top: -.45em;
+    right: .97em;
+    left: .95em;
+    pointer-events: none;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #222222;
+    font-size: 1.4em;
+    right: auto;
+    left: .95em;
+    padding: 0;
+    text-align: center;
+}
+.side-menu::after {
+    font-size: 1.4em;
+    display: block;
+    width: 0;
+    height: 0;
+    content: '';
+    pointer-events: none;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #222222;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -.45em;
+    right: .9em;
+    left: .85em;
+}
+.side-menu {
+    position: absolute;
+    z-index: 9;
+    top: 155px;
+    left: 15px;
+    display: none;
+    overflow: visible;
+    width: 228px;
+    margin: 0;
+    padding: 0;
+    color: azure;
+    border: 1px solid azure;
+    border-radius: 3px;
+    background: #222222;
+    box-shadow: 1px 1px 3px rgba(34, 34, 34, 0.2);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-animation: popover 0.3s ease-in-out;
+    -moz-animation: popover 0.3s ease-in-out;
+    animation: popover 0.3s ease-in-out;
+    line-height: 1.5;
+}
+.side-menu li:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.active {
+    display: block;
+}
+
+#side-menu li {
+    text-align: center;
+    line-height: 24px;
+    font-size: 18px;
+    box-sizing: border-box;
+    font-family: "OstrichSans", sans-serif;
+    letter-spacing: 4px;
+}
+#side-menu li a {
+    display: block;
+    padding: .5em;
+    color: azure;
+    border-bottom: 1px solid azure;
+    transition: color 0.1s linear;
+    background-color: transparent;
+    text-decoration: none;
+}
+#side-menu li a:link {
+    text-decoration: none;
+}
+#side-menu ul {
+    list-style-type: none;
+}
+#side-menu li > a:hover {
+    background-color: transparent;
+    color: azure;
+    font-weight: bold;
 }

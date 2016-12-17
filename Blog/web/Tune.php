@@ -12,7 +12,7 @@ class Tune
         
     
     
-    public function __construct($artist,$title,$genre,$path,$uploader)
+    public function __construct($artist="",$title="",$genre="",$path,$uploader)
     {
         
         $this->genre = SQLite3::escapeString($genre);
@@ -46,6 +46,14 @@ class Tune
         
         $result = $this->dbQuery($query);
         return !empty($result);
+        
+    }
+    
+    public function remove($isAdmin=false){
+        
+        $query = "DELETE FROM music WHERE path = '$this->path' AND (uploaderId = '$this->uploader' OR '$isAdmin')";
+        
+        $this->dbQuery($query);        
         
     }
 

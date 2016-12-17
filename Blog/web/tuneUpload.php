@@ -207,10 +207,11 @@
                                     <select class="selectpicker" required name="genre" data-style="btn-primary" title="Choose one of the following" multiple data-max-options="4">
                                         <?php
                                             
-                                            $genres = DataRetriever::getGenres();
+                                            $genres = DataRetriever::getGenreNames();
                          
                                             if(empty($genres)){
                                                 http_response_code(400);
+                                                exit;
                                             }
                          
                                             foreach($genres as $genre)

@@ -83,10 +83,10 @@
                         <div class="navbar-body">
                             <ul class="nav navbar-nav">
 
-                                <li><a href="#">My Profile</a></li>
-                                <li><a href="#">My Playlist</a></li>
+                                <li><a href="userAccount.php">My Profile</a></li>
+                                <li><a href="preview.php">My Playlist</a></li>
                                 <li><a href="#">My Likes</a></li>
-                                <li><a href="#">Security Update</a></li>
+                                <li><a href="profileData.php">Account Update</a></li>
                                 <li><a href="#report">Report</a></li>
 
                             </ul>

@@ -4,6 +4,11 @@
     $session = new session();
     $session::isUser();
 
+    if(isset($_SESSION['tune'])){
+        unlink($_SESSION['tune']);
+        session_destroy($_SESSION['tune']);
+    }
+
     #Check if file is ready-for-upload
     if(is_uploaded_file($_FILES['file']["tmp_name"])){
         

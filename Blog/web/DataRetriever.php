@@ -70,6 +70,14 @@ class DataRetriever
         
     }
     
+    public static function getGenreNames(){
+        
+        $query = "SELECT name FROM genre";
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result;
+        
+    }
     
     
     public static function getGenres(){
@@ -77,9 +85,6 @@ class DataRetriever
         $query = "SELECT wallpaper FROM genre";
         $result = DataRetriever::dbQuery($query);
         
-        if(empty($result)){
-            return $result;
-        }
         return $result;
         
     }

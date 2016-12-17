@@ -30,7 +30,7 @@
                         <div class="btn-toolbar">
                             <button class="button" onclick="location.href='Blog/web/login.php'" type="button">Sign In
                             </button>
-                            <button class="button" onclick="location.href='Blog/web/register.php'" type="button">Register
+                            <button class="button" onclick="location.href='Blog/web/register.php'" type="button">Sign Up
                             </button>
                             <button id="about" class="button" onclick="location.href='Blog/web/aboutUs.html'" type="button">About Us
                             </button>
@@ -49,7 +49,7 @@
                     <div class="center">
                         <div class="inner-center">
                             <div class="btn-toolbar">
-                                <button class="button" onclick="location.href='#'" type="button">Listen
+                                <button class="button" onclick="location.href='Blog/web/home.php'" type="button">Listen
                                 </button>
                                 <button class="button" onclick="location.href='Blog/web/tuneUpload.php'" type="button">Upload
                                 </button>

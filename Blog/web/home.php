@@ -38,12 +38,21 @@
 
         <header>
             <?php
-            if($isUser){
-                $imageDir = "../bubble_avatar/" . "user_" . $_SESSION['user'];
-                
-                echo "<div class=\"header\">";
-                    echo "<div class=\"downpointer\">";
-                        
+                if($isUser){
+                    $imageDir = "../bubble_avatar/" . "user_" . $_SESSION['user'];
+                    echo "<div class=\"header\">";
+                    echo "<div id=\"downpointer\" class=\"downpointer\">";
+                        echo "<ul id=\"side-menu\" class=\"side-menu\">";
+                            echo "<li><a href=\"home.php\">Home</a>";
+                            echo "<li><a href=\"userAccount.php\">My Account</a>";
+                            echo "<li><a href=\"preview.php\">My Playlist</a>";
+                            echo "<li><a href=\"tuneUpload.php\">Upload Tune</a>";
+                            if($isAdmin){
+                            echo "<li><a href=\"genre-create\">Create Genre</a>";
+                            }
+                            echo "<li><a href=\"../../index.php\">Back to index</a>";
+                            echo "<li><a href=\"logOut.php\">Log Out</a>";
+                        echo "</ul>";
                     echo "</div>";
                     echo "<div class=\"user-bubble\">";
                         echo "<img width=\"64\" height=\"64\" src=" . $imageDir . ">";
@@ -51,7 +60,9 @@
                 echo "</div>";
             }else {
                 #<!-- Sign in / Register -->
-                echo "<div class=\"\">";
+                echo "<div class=\"header-non-user\">";
+                    echo "<button class=\"button\" onclick=\"location.href='web/register.php'\" type=\"button\">Register</button>";
+                    echo "<button class=\"button\" onclick=\"location.href='login.php'\" type=\"button\">Sign In</button>";
                 echo "</div>";
             }
             ?>
@@ -60,12 +71,10 @@
             <div class="genre-slider">
 
                 <div id="thumbnail-slider">
-                <?php
+                    <?php
                     if($isAdmin){
                         echo "<div class=\"create-genre\">";
-                            echo "<div class=\"button-genre\" onclick=\"location.href='create-genre.php'\" >";
-                        
-                            echo "</div>";
+                            echo "<img class=\"button-genre\" src=\"../images/upload-arrow.png\" onclick=\"location.href='create-genre.php'\" >";
                         echo "</div>";
                         
                         echo "<div id=\"left\" class=\"slide-left-admin\">";
@@ -91,15 +100,17 @@
                             foreach($genres as $genre)
                             {
     
-                                echo "<li class=\"\" ><img class=\"thumb\" src=\"" . $genre['wallpaper'] ."\" style=\"height:auto;\" />";
-                                echo "<div class=\"nail\">";
+                                echo "<li class=\"\" >";
+                                    echo "<div class=\"nail\">";
+                                        echo "<img class=\"thumb\" src=\"" . $genre['wallpaper'] ."\" style=\"height:auto;\" />";
+                                    echo "<div class=\"nail\">";
                                 
                                 if($isAdmin){
                                     echo "<div class=\"genre-edit\" onclick=\"genreManage()\"></div>";
                                     echo "<div class=\"genre-delete\" onclick=\"genreManage()\"></div>";
                                 }
+                                echo "/div";
                                 
-                                echo "</div>";
                             }
                             }
                         ?>
@@ -120,7 +131,7 @@
                     <div class="player">
                         <div class="player-control">
                             <div class="primary-control">
-                                <a id="play-button" href="#" title="Play button" class="play-button"></a>
+                                <a id="play-button" title="Play button" class="play-button"></a>
                             </div>
 
                             <div class="secondary-control">
@@ -145,50 +156,72 @@
                             </div>
                         </div>
                     </div>
-                    <div class="genre-tags-container">
-                        <ul class="genre">
-                            <li><a class="genreTag" href="#">Hip Hop</a></li>
-                            <li><a class="genreTag" href="#">Progressive House</a></li>
-                        </ul>
-                    </div>
-                    <div class="tune-control">
-
+                    <div class="player-bottom">
+                        <div class="genre-tags-container">
+                            <ul class="genre">
+                                <li><a class="genreTag" href="#">Hip Hop</a></li>
+                                <li><a class="genreTag" href="#">Progressive House</a></li>
+                            </ul>
+                        </div>
+                        <div class="tune-control">
+                            <a id="delete-tune" class="button-delete-tune"><span></span></a>
+                            <a id="add-to-playlist" class="button-add-to-playlist"><span id="add-to-playlist-span" class=""></span></a>
+                            <a id="listen" class="button-listen"><span></span></a>
+                        </div>
                     </div>
                 </div>
+                <script>
+                    var wavesurfer = WaveSurfer.create({
+                        container: '#waveform',
+                        waveColor: '#E8E8E8',
+                        height: '100',
+                        progressColor: '#40D4A2',
+                        backend: 'MediaElement',
+                        barWidth: 3,
+
+                    });
+
+                    console.log(wavesurfer);
+
+                    wavesurfer.load("../Rae Sremmurd - No Type.mp3");
+
+                    wavesurfer.on('loading', function(percents) {
+                        document.getElementById('progress').value = percents;
+                    });
+
+                    $("#play-button").on("click", function() {
+                        wavesurfer.play();
+                    });
+
+                </script>
                 <!-- Player template END -->
             </div>
         </main>
 
-        <footer>
-
-
-
-        </footer>
-        <script>
-            var wavesurfer = WaveSurfer.create({
-                container: '#waveform',
-                waveColor: '#E8E8E8',
-                height: '100',
-                progressColor: '#40D4A2',
-                backend: 'MediaElement',
-                barWidth: 3,
-
+    <script>
+        
+        $('#downpointer').on('click',function() {
+            
+            $('#side-menu').toggleClass('active');
+            
+        });
+        
+        $('#add-to-playlist').click(function(){
+            $.ajax({
+               
+                url: "add-to-playlist.php",
+                success: function() {
+                    $('#add-to-playlist-span').toggleClass('added');
+                },
+                error: function() {
+                    window.alert('Our service is not available at the moment. Please, try a few minutes later');
+                },
+                type: "POST",
+            
             });
-
-            console.log(wavesurfer);
-
-            wavesurfer.load("../Rae Sremmurd - No Type.mp3");
-
-            wavesurfer.on('loading', function(percents) {
-                document.getElementById('progress').value = percents;
-            });
-
-            $("#play-button").on("click", function() {
-                wavesurfer.play();
-            });
-
-        </script>
-
+        })
+        
+    </script>
 
     </body>
 
