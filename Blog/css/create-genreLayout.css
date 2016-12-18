@@ -146,3 +146,64 @@ form input {
     flex-direction: row;
     flex-wrap: nowrap;
 }
+
+.side-menu {
+    position: absolute;
+    z-index: 9;
+    top: 70px;
+    left: 0;
+    display: none;
+    overflow: visible;
+    width: 228px;
+    margin: 0;
+    padding: 0;
+    color: azure;
+    border: 1px solid azure;
+    border-radius: 3px;
+    background: rgba(22,22,22,0.7);
+    box-shadow: 1px 1px 3px rgba(34, 34, 34, 0.2);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-animation: popover 0.3s ease-in-out;
+    -moz-animation: popover 0.3s ease-in-out;
+    animation: popover 0.3s ease-in-out;
+    line-height: 1.5;
+}
+.side-menu li:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.active {
+    display: block;
+}
+
+#side-menu li {
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: "OstrichSans", sans-serif;
+    letter-spacing: 3px;
+    list-style: none;
+}
+#side-menu li a {
+    display: block;
+    padding: .5em;
+    color: rgba(232,232,232,1);
+    border-bottom: 1px solid rgba(232,232,232,1);
+    transition: color 0.1s linear;
+    background-color: transparent;
+    text-decoration: none;
+}
+#side-menu li a:link {
+    text-decoration: none;
+}
+#side-menu ul {
+    list-style-type: none;
+}
+#side-menu li > a:hover {
+    background-color: transparent;
+    color: rgba(232,232,232,0.8);
+    font-weight: bold;
+}

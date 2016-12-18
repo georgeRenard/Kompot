@@ -74,21 +74,20 @@
                     $(\"#play-button-" . $tune['id'] . "\"" . ").on(\"click\", function() {
                         wavesurfer" . $tune['id'] . ".play();
                     });
-                    
-                    var tuneID = ". $tune['id'] .";
+    
                     
                     $('." . $tune['id'] . "').click(function(){
                         $.ajax({
                         
-                        url: \"add-to-playlist.php\",
+                        type: \"POST\",
+                        url: 'add-to-playlist.php',
+                        data: tuneID =" . $tune['id'] . ",
                         success: function() {
-                        $('#add-to-playlist-span').toggleClass('added');
+                            $('.". $tune['id'] ."').toggleClass('added');
                         },
-                        data: tuneID,
                         error: function() {
                         window.alert('Our service is not available at the moment. Please, try a few minutes later');
-                        },
-                        type: \"POST\",
+                        }
             
                         });
                     });

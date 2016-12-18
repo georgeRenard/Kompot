@@ -641,9 +641,14 @@ a:active {
     }
     #thumbnail-slider-prev {
         left: 0px;
+        display: none;
     }
     #thumbnail-slider-next {
         right: 0px;
+        display:none
+    }
+    img.button-genre {
+        display: none;
     }
 }
 
@@ -675,45 +680,11 @@ a:active {
 
 /* Side Menu */
 
-.side-menu::before {
-    width: 0;
-    height: 0;
-    display: block;
-    content: '';
-    position: absolute;
-    top: -.45em;
-    right: .97em;
-    left: .95em;
-    pointer-events: none;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 10px solid #222222;
-    font-size: 1.4em;
-    right: auto;
-    left: .95em;
-    padding: 0;
-    text-align: center;
-}
-.side-menu::after {
-    font-size: 1.4em;
-    display: block;
-    width: 0;
-    height: 0;
-    content: '';
-    pointer-events: none;
-    border-right: 12px solid transparent;
-    border-bottom: 12px solid #222222;
-    border-left: 12px solid transparent;
-    position: absolute;
-    top: -.45em;
-    right: .9em;
-    left: .85em;
-}
 .side-menu {
     position: absolute;
     z-index: 9;
-    top: 155px;
-    left: 15px;
+    top: 70px;
+    left: 0;
     display: none;
     overflow: visible;
     width: 228px;
@@ -722,7 +693,7 @@ a:active {
     color: azure;
     border: 1px solid azure;
     border-radius: 3px;
-    background: #222222;
+    background: rgba(22,22,22,0.7);
     box-shadow: 1px 1px 3px rgba(34, 34, 34, 0.2);
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -743,16 +714,17 @@ a:active {
 #side-menu li {
     text-align: center;
     line-height: 24px;
-    font-size: 18px;
+    font-size: 16px;
     box-sizing: border-box;
     font-family: "OstrichSans", sans-serif;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
+    list-style: none;
 }
 #side-menu li a {
     display: block;
     padding: .5em;
-    color: azure;
-    border-bottom: 1px solid azure;
+    color: rgba(232,232,232,1);
+    border-bottom: 1px solid rgba(232,232,232,1);
     transition: color 0.1s linear;
     background-color: transparent;
     text-decoration: none;
@@ -765,6 +737,6 @@ a:active {
 }
 #side-menu li > a:hover {
     background-color: transparent;
-    color: azure;
+    color: rgba(232,232,232,0.8);
     font-weight: bold;
 }
