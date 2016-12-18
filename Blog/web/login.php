@@ -64,7 +64,7 @@
 
     <meta charset="utf-8" />
     <meta name="Login" content="Login Form" />
-    <meta name="google" content="nositelinkssearchbox" />\
+    <meta name="google" content="nositelinkssearchbox" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -72,7 +72,7 @@
 
     
      <link type="text/css" rel="stylesheet" href="../css/loginpage.css">
- <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
+ <link type="text/css" rel="stylesheet" href="../css/index.css">
      
     
     <script src="../scripts/bootstrap.js"></script>
@@ -83,9 +83,10 @@
 </head>
 
 <body>
-
+<header></header>
     
-    
+   <main>
+       <div id="snow"></div>
     <div class="wrapper">
 	<div class="container">
 		<h1>Welcome</h1>
@@ -94,10 +95,13 @@
 			 <input  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required type="email">
 			<input type="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required>
 			<button type="submit" id="login-button" name="btn-submit">Login</button>
-		</form>
+           
+            
+	</form>
 	</div>
 	
-	<ul class="bg-bubbles">
+        
+        <ul class="bg-bubbles">
 		<li></li>
 		<li></li>
 		<li></li>
@@ -109,9 +113,28 @@
 		<li></li>
 		<li></li>
 	</ul>
+        
+        
 </div>
-  
-
+  </main> 
+     <div class="dark-footer">
+     <footer class="footer-wrapper bottom-footer">
+                <div class="footer">
+                    <div class="social-links">
+                        <div class="center">
+                            <div class="inner-center">
+                                <button class="button-fb" onclick="location.href='https://www.facebook.com/trueslavs/'" type="button">&nbsp; FACEBOOK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="links"><a href="Blog/web/aboutUs.html">About Us</a> | <a href="#">Music</a> | <a href="Blog/web/policy.html">Privacy Policy</a>| <a href="Blog/web/contact.html">Contact</a>| <a href="http://adidas.com">Adidas</a></p>
+                    <p class="copyright">&copy; 2042 Kompot of Rhytms. All rights reserved. Made with Suka by TRUE SLAVS |||</p>
+                    <p class="copyright">We do not own any of the rights regarding the music we post. It's only for entertainment purposes! True Slavs |||</p>
+                </div>
+            </footer>
+    
+    </div>
 </body>
 
 

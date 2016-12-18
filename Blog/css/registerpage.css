@@ -2,7 +2,10 @@ html{
     height: 100%;
     width:100%;
 }
-
+main{
+    height: 100%;
+    width:100%;
+}
 
 body {
     
@@ -314,3 +317,10 @@ form button:hover {
             transform: translateY(-700px) rotate(600deg);
   }
 }
+.dark-footer
+{ 
+    background-image: url('../../backgroundWallpaper.jpg');
+    background-size: auto;
+    font-family: "OstrichSans", sans-serif;
+    background-repeat: no-repeat;
+    }
