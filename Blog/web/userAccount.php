@@ -4,10 +4,9 @@
     require_once('UpdateImage.php');
     require_once('Report.php');
 
-
     $session = new session();
-
     $session::isUser();
+    $session::isTuneAwaiting();
 
     #In case the user tries to update his profile picture
     if(isset($_POST['btn-submit'])){

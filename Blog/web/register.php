@@ -6,6 +6,7 @@
     
     $session = new session();
     $session::checkLogin();
+    $session::isTuneAwaiting();
 
 
     if(isset($_POST['btn-submit']))

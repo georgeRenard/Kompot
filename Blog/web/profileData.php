@@ -4,6 +4,7 @@
     
     $session = new session();
     $session::isUser();
+    $session::isTuneAwaiting();
 
     
     #TODO: CREATE A WAY TO FETCH A SIDEBAR WITH GENRES AND WHEN THE USER CHOOSES ONE OF THEM IT AUTOMATICALLY APPENDS 

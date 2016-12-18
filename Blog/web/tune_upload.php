@@ -5,8 +5,10 @@
     $session::isUser();
 
     if(isset($_SESSION['tune'])){
-        unlink($_SESSION['tune']);
-        session_destroy($_SESSION['tune']);
+        if(file_exists("../../Music/Temp/" . $_SESSION['tune'])){
+            unlink("../../Music/Temp/" . $_SESSION['tune']);
+            unset($_SESSION['tune']);
+        }
     }
 
     #Check if file is ready-for-upload

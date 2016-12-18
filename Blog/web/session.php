@@ -44,4 +44,25 @@ class session
     }
     
     
+    public static function isTuneAwaiting($relativePath = 1){
+        
+        self::start();
+        if(isset($_SESSION['tune'])){
+            
+            $path = "../../Music/Temp/";
+            
+            if(!is_int($relativePath)){
+                $path = $relativePath;
+            }
+            
+            if(file_exists($path . $_SESSION['tune'])){
+                unlink($path . $_SESSION['tune']);
+            }
+            unset($_SESSION['tune']);
+            
+        }
+        
+    }
+    
+    
 }

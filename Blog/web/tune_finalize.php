@@ -6,13 +6,14 @@
     $session::isUser();
 
     
-
 function tuneFinalize($uploader){
     
     #POST data fetch
     $artist = $_POST['artist'];
     $title = $_POST['title'];
-    $genre = $_POST['genre'];
+    $genre = $_POST['genres'];
+    
+    $genre = implode(', ',array_values($genre));
     
     $directory = "../../Music/Uploaded/";
     $tempDir = "../../Music/Temp/";
@@ -49,16 +50,17 @@ function tuneFinalize($uploader){
             #Upload tune to the Server
             $result = $tune->uploadToServer();
             
-            if($result){
-                session_destroy($_SESSION['tune']);
+            var_dump($result);
+            
+            if(!$result){
+                unset($_SESSION['tune']);
                 unlink($file);
-                $result = true;
-            }
-            return $result;   
-                
+                return true;
+            }   
             }else{
-            unlink($tempFileName);
-            return true;
+                unset($_SESSION['tune']);
+                unlink($tempFileName);
+                return false;
             }
     }catch(Exception $ex){
         $logger = new Logger();

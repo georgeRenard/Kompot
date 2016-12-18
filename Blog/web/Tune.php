@@ -45,7 +45,7 @@ class Tune
         #Execute Query
         
         $result = $this->dbQuery($query);
-        return !empty($result);
+        return empty($result);
         
     }
     

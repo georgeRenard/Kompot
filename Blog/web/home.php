@@ -3,6 +3,7 @@
     require_once('DataRetriever.php');
 
     $session = new session();
+    $session::isTuneAwaiting();
 
     $isUser = false;
     $isAdmin = false;
@@ -127,74 +128,34 @@
 
             <div class="page-feed">
                 <!-- Player template -->
-                <div class="player-container">
-                    <div class="player">
-                        <div class="player-control">
-                            <div class="primary-control">
-                                <a id="play-button" title="Play button" class="play-button"></a>
-                            </div>
-
-                            <div class="secondary-control">
-
-                                <div onclick="wavesurfer.pause()" class="stop-button">
-
-                                </div>
-
-                                <div onclick="wavesurfer.stop()" class="pause-button">
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
-                        <div class="main-control">
-                            <div class="track-info">
-                                Rae Sremmurd - No Type
-                            </div>
-                            <progress id="progress" class="progress" value="100" max="100"></progress>
-                            <div id="waveform" class="wavesurfer">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="player-bottom">
-                        <div class="genre-tags-container">
-                            <ul class="genre">
-                                <li><a class="genreTag" href="#">Hip Hop</a></li>
-                                <li><a class="genreTag" href="#">Progressive House</a></li>
-                            </ul>
-                        </div>
-                        <div class="tune-control">
-                            <a id="delete-tune" class="button-delete-tune"><span></span></a>
-                            <a id="add-to-playlist" class="button-add-to-playlist"><span id="add-to-playlist-span" class=""></span></a>
-                            <a id="listen" class="button-listen"><span></span></a>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    var wavesurfer = WaveSurfer.create({
-                        container: '#waveform',
-                        waveColor: '#E8E8E8',
-                        height: '100',
-                        progressColor: '#40D4A2',
-                        backend: 'MediaElement',
-                        barWidth: 3,
-
-                    });
-
-                    console.log(wavesurfer);
-
-                    wavesurfer.load("../Rae Sremmurd - No Type.mp3");
-
-                    wavesurfer.on('loading', function(percents) {
-                        document.getElementById('progress').value = percents;
-                    });
-
-                    $("#play-button").on("click", function() {
-                        wavesurfer.play();
-                    });
-
-                </script>
-                <!-- Player template END -->
+                <?php
+                    require_once('musicplayer.php');
+                
+                    $query = "none";    
+                
+                    if(isset($_SESSION['tuneByGenre'])){
+                        
+                        $genre = trim($_SESSION['tuneByGenre']);
+                        $genre = strip_tags($genre);
+                        $genre = htmlspecialchars($genre);
+                        $genre = SQLite3::escapeString($genre);
+                        
+                        $query = "SELECT * FROM music WHERE genre LIKE '$genre'";
+                    }
+                    
+                    $tunes = DataRetriever::getTunes($query);
+                
+                    if(!empty($tunes)){
+                        
+                        foreach($tunes as $tune){
+                            
+                            renderPlayer($tune);
+                            
+                        }
+                        
+                    }
+                    ?>
+                                    <!-- Player template END -->
             </div>
         </main>
 
@@ -205,21 +166,6 @@
             $('#side-menu').toggleClass('active');
             
         });
-        
-        $('#add-to-playlist').click(function(){
-            $.ajax({
-               
-                url: "add-to-playlist.php",
-                success: function() {
-                    $('#add-to-playlist-span').toggleClass('added');
-                },
-                error: function() {
-                    window.alert('Our service is not available at the moment. Please, try a few minutes later');
-                },
-                type: "POST",
-            
-            });
-        })
         
     </script>
 

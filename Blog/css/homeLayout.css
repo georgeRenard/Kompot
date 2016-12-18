@@ -18,6 +18,7 @@ html {
 body {
     height: 100%;
     background-image: url('../../backgroundWallpaper.jpg');
+    background-attachment: fixed;
     background-size: cover;
     font-family: "OstrichSans", sans-serif;
     background-repeat: no-repeat;
@@ -191,6 +192,7 @@ img.thumb {
     width: 640px;
     height: 160px;
     display: flex;
+    margin-bottom: 30px;
     flex-direction: column;
 }
 

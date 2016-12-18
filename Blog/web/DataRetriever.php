@@ -111,6 +111,21 @@ class DataRetriever
         
     }
     
+    public static function getTunes($query){
+        
+        $queryToExecute = "";
+        
+        if($query = "none"){
+            $queryToExecute = "SELECT * FROM music";
+        }else {
+            $queryToExecute = $query;
+        }
+        
+        $result = DataRetriever::dbQuery($queryToExecute);
+        return $result;
+        
+    }
+    
 
 
 }

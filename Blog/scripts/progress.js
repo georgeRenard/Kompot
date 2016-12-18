@@ -1,13 +1,19 @@
 function progressHandler(event) {
 
     var percentage = (event.loaded / event.total) * 100;
-    document.getElementById('upload-line').width = percentage;
+    document.getElementById("upload-line").setAttribute("style","width:" + Math.round(percentage) + "%");
     document.getElementById("progress-label").innerHTML = Math.round(percentage) + "% uploaded...";
 
 }
 
 function completeHandler(event) {
-
+    
+    if(event.target.responseText != "Tune ready for upload"){
+        document.getElementById("upload-line").setAttribute("style","width: 100%; background-color: rgba(168,70,70,0.5);");
+    }else {
+        document.getElementById("upload-line").setAttribute("style","width: 100%; background-color: #55AE3A;");
+    }
+    
     document.getElementById("progress-label").innerHTML = event.target.responseText;
 }
 

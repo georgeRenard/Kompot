@@ -6,6 +6,10 @@
     $session = new session();
     $session::isUser();
 
+    if(!isset($_POST['submit-track'])){
+        $session::isTuneAwaiting();
+    }
+
     $userId = $_SESSION['user'];
     $user = DataRetriever::getUserData($userId);
 
@@ -192,19 +196,19 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="artist">Artist</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" required type="text" placeholder="Artist" id="artist" name="artist" pattern="^[a-zA-Z\s]{3,16}$">
+                                    <input autocomplete="off" class="form-control" required type="text" placeholder="Artist" id="artist" name="artist" pattern="^[a-zA-Z\s]{3,32}$">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="artist">Title</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" required type="text" placeholder="Title" id="title" name="title" pattern="^[a-zA-Z\s]{4,16}$">
+                                    <input autocomplete="off" class="form-control" required type="text" placeholder="Title" id="title" name="title" pattern="^[a-zA-Z\s]{4,22}$">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" for="genre">Genre</label>
                                 <div class="col-sm-6">
-                                    <select class="selectpicker" required name="genre" data-style="btn-primary" title="Choose one of the following" multiple data-max-options="4">
+                                    <select class="selectpicker" required name="genres[]" data-style="btn-primary" title="Choose one of the following" multiple data-max-options="4">
                                         <?php
                                             
                                             $genres = DataRetriever::getGenreNames();
@@ -216,7 +220,7 @@
                          
                                             foreach($genres as $genre)
                                             {
-                                                echo "<option>" . $genre['name'] . "</option>";
+                                                echo "<option value=\"". $genre['name'] . "\">" . $genre['name'] . "</option>";
                                             }
                                             
                                         ?>

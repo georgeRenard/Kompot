@@ -4,6 +4,7 @@
 
     $session = new session();
     $session::isUser();
+    $session::isTuneAwaiting();
 
 
     $isAdmin = false;
