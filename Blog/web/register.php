@@ -77,6 +77,8 @@
 
         
         <link type="text/css" rel="stylesheet" href="../css/registerpage.css">
+        <link type="text/css" rel="stylesheet" href="../css/index.css">
+   
 
         <script type="text/jscript" href="../scripts/bootstrap.js"></script>
         <script type="text/jscript" href="../scripts/jquery-3.1.1.js"></script>
@@ -84,7 +86,8 @@
     </head>
 
     <body>
-
+<header></header>
+       <main>
         <div id="snow"></div>
     
     <div class="wrapper">
@@ -115,6 +118,25 @@
 		<li></li>
 	</ul>
 </div>
+           </main> 
+        <div class="dark-footer">
+     <footer class="footer-wrapper bottom-footer">
+                <div class="footer">
+                    <div class="social-links">
+                        <div class="center">
+                            <div class="inner-center">
+                                <button class="button-fb" onclick="location.href='https://www.facebook.com/trueslavs/'" type="button">&nbsp; FACEBOOK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="links"><a href="Blog/web/aboutUs.html">About Us</a> | <a href="#">Music</a> | <a href="Blog/web/policy.html">Privacy Policy</a>| <a href="Blog/web/contact.html">Contact</a>| <a href="http://adidas.com">Adidas</a></p>
+                    <p class="copyright">&copy; 2042 Kompot of Rhytms. All rights reserved. Made with Suka by TRUE SLAVS |||</p>
+                    <p class="copyright">We do not own any of the rights regarding the music we post. It's only for entertainment purposes! True Slavs |||</p>
+                </div>
+            </footer>
+    
+    </div>
   
     </body>
     
