@@ -1,5 +1,6 @@
 <?php
     require_once('class.sqlite3.inc.php');
+    require_once('Playlist.php');
 
 class Tune
 {

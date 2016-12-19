@@ -1,10 +1,11 @@
 //Song
-
 var song;
+var songUrl;
 var fft;
 var duration;
 var spectrum;
 var canvas;
+var started;
 
 //Background
 
@@ -29,17 +30,18 @@ var slider = {
     posY: 470
 };
 
-//Preloading resources
+
 function preload() {
-    song = loadSound("MitiS - Endeavours.mp3");
-    bg = loadImage("winter.jpg");
+    
+    song = loadSound(songUrl);
+    bg = loadImage("../beat_detection/winter.jpg");
 }
 
 function setup() {
-
-    canvas = createCanvas(662, 613);
-    canvas.parent(".content");
-
+    
+    canvas = createCanvas(645, 600);
+    canvas.parent("visualizer");
+    fft = new p5.FFT(0.8, 256);
     song.play();
     duration = song.duration();
     map(slider.posX, 60, 580, 0, duration);
@@ -53,13 +55,12 @@ function setup() {
         flakeSize[i] = round(random(minFlakeSize, maxFlakeSize));
 
     }
-
-    fft = new p5.FFT(0.8, 256);
     noCursor();
 
 }
 
 function draw() {
+    if(started){
     //Load background  
     image(bg, 0, 0);
 
@@ -92,10 +93,11 @@ function draw() {
 
     //Snow invoke
     invokeSnow();
+    }
 }
 
 function toggleSong() {
-    if (song.isPlayed()) {
+    if (song.isPlayed) {
         song.stop();
     } else {
         song.play();
@@ -117,7 +119,6 @@ function invokeSnow() {
         flakeY[i] += flakeSize[i] + direction[i];
 
         if (flakeX[i] > width + flakeSize[i] || flakeX[i] < -flakeSize[i] || flakeY[i] > height + flakeSize[i]) {
-
             flakeY[i] = random(0, width);
             flakeY[i] = -flakeSize[i];
 
@@ -142,4 +143,21 @@ function analyzeSong(spectrum) {
 
     }
 
+}
+
+function animationStart(songUrl){
+    
+    started = true;
+    loop();
+    
+}
+
+function stopAnimation(){
+    started = false;
+}
+
+function isSketchStarted() {
+
+    return started;
+    
 }

@@ -126,6 +126,28 @@ class DataRetriever
         
     }
     
+    public static function getTunesInPlaylist($id){
+        
+        $id = SQLite3::escapeString($id);
+        $query = "SELECT musicId FROM playlist WHERE userId = '$id'";
+        
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result;
+        
+    }
+    
+    public static function getTuneById($id){
+        
+        $id = SQLite3::escapeString($id);
+        
+        $query = "SELECT * FROM music WHERE id = '$id'";
+        
+        $result = DataRetriever::dbQuery($query);
+        
+        return $result[0];
+        
+    }
 
 
 }

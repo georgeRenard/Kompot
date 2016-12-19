@@ -9,7 +9,7 @@
         
         $genres = explode(', ', $tune['genre']);
         
-        echo "<div class=\"player-container\">";
+        echo "<div class=\"player-container\" id=\"player-container-".$tune['id']."\">";
             echo "<div class=\"player\">";
                 echo "<div class=\"player-control\">";
                     echo "<div class=\"primary-control\">";
@@ -72,24 +72,44 @@
                     });
 
                     $(\"#play-button-" . $tune['id'] . "\"" . ").on(\"click\", function() {
-                        wavesurfer" . $tune['id'] . ".play();
+                    
+                        $(\"#play-button-".$tune['id']."\").toggleClass('stop');
+                    
+                        if(wavesurfer" . $tune['id'] . ".isPlaying()){
+                            wavesurfer" . $tune['id'] . ".pause();
+                        }else{
+                            wavesurfer" . $tune['id'] . ".play();
+                        }
                     });
     
                     
-                    $('." . $tune['id'] . "').click(function(){
+                    $('." . $tune['id'] . "').click(function(event){
+                    
+                        event.preventDefault();
+                        
+                        var id = \"".$tune['id']."\";
+                        var confirm = confirm(\"Are you sure you want to add/remove this track from your playlist?\");
+                        
+                        if(confirm){
+                    
                         $.ajax({
                         
                         type: \"POST\",
-                        url: 'add-to-playlist.php',
-                        data: tuneID =" . $tune['id'] . ",
-                        success: function() {
-                            $('.". $tune['id'] ."').toggleClass('added');
+                        url: \"add-to-playlist.php\",
+                        data: {id: id},
+                        success: function(callback) {
+                            
+                            if(callback != \"Service not available right now! Please, try again later.\"){
+                                $('.". $tune['id'] ."').toggleClass('added');
+                            }
+                            window.alert(callback);
                         },
                         error: function() {
                         window.alert('Our service is not available at the moment. Please, try a few minutes later');
                         }
             
                         });
+                        }
                     });
 
                 </script>";

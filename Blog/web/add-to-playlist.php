@@ -1,23 +1,30 @@
 <?php
-
     require_once('Playlist.php');
     require_once('session.php');
     $session = new session();
+    $session::isUser();
+
+    if(isset($_POST['id'])){
     
-    if(isset($_POST['tuneID'])){
-        
-        $session::isUser();
         $session::isTuneAwaiting();
-        
-        header("Location: create-genre.php");
         
         $userId = $_SESSION['user'];
         
         #Many to many relation (INFORMAL);
-        $playlist = new Playlist($tuneId,$userId);
-        $result = $playlist->manage();
+        $playlist = new Playlist($_POST['id'],$userId);
+        $callback = $playlist->manage();
+        
+        if($callback[0]){
+            echo $callback[1];
+            exit;
+        }else {
+            echo "Service not available right now! Please, try again later.";
+            exit;
+        }
+        
         
     }else{
-        header("Location: create-genre.php");
+        echo "Error Code: 400 / Bad Request";
+        exit;
     }
     

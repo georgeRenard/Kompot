@@ -1,13 +1,12 @@
 <?php
 
-class PlaylistManager extends Tune
+class Playlist
 {
     
     private $userId;
     private $tuneId;
-    private $tuneUserRelationExists
     
-    public function __construct(){
+    public function __construct($tuneId,$userId){
      
         $this->userId = SQLite3::escapeString($userId);
         $this->tuneId = SQLite3::escapeString($tuneId);
@@ -40,11 +39,11 @@ class PlaylistManager extends Tune
         
         if($this->tuneIsLinkedToCurrentUser()){
             $result = $this->unlinkTune();
-            return $result;
+            return array($result,'This track was removed from your playlist');
         }
         
         $result = $this->addTune();
-        return $result;
+        return array($result,'This track was added to your playlist.');
         
     }
     
@@ -59,7 +58,7 @@ class PlaylistManager extends Tune
     
     private function addTune(){
         
-        $query = "INSERT OR IGNORE INTO playlist(userId,musicId) VALUES ('$this->userId','$this->tuneId')"
+        $query = "INSERT OR IGNORE INTO playlist(userId,musicId) VALUES ('$this->userId','$this->tuneId')";
         
         $result = $this->dbQuery($query);
         

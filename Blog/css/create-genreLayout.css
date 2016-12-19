@@ -169,6 +169,8 @@ form input {
     -moz-animation: popover 0.3s ease-in-out;
     animation: popover 0.3s ease-in-out;
     line-height: 1.5;
+    transform: rotate(45deg);
+    
 }
 .side-menu li:first-child {
     border-top-left-radius: 3px;

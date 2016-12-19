@@ -27,11 +27,11 @@
 
         <script src="../scripts/jquery-3.1.1.min.js"></script>
         <script src="../scripts/bootstrap.js"></script>
+        <script src="../scripts/jquery.tinyscrollbar.js"></script>
         <script src="../beat_detection/libraries/p5.js"></script>
         <script src="../beat_detection/libraries/p5.dom.js"></script>
         <script src="../beat_detection/libraries/p5.sound.js"></script>
         <script src="../beat_detection/sketch.js"></script>
-        <script src="../scripts/jquery.tinyscrollbar.js"></script>
 
         <title>Home</title>
     </head>
@@ -79,33 +79,99 @@
                                 <a id="togglebutton"></a>
                             </div>
                             <div class="current-tune-details">
+                                <div id="title-played" class="title">
 
+                                </div>
+                                <div id="artist-played" class="artist">
+
+                                </div>
                             </div>
                         </div>
                         <div class="list">
                             <ul>
-                                <li>
-                                    <div class="tune-generated-id">
-                                        1
-                                    </div>
-                                    <div class="tune-details">
-                                        <div class="title">
-                                            How deep is your love
+                                <?php
+                                $playlistTunes = DataRetriever::getTunesInPlaylist($_SESSION['user']);
+                                $counter = 1;
+                                if(!empty($playlistTunes)){
+                                foreach($playlistTunes as $tuneId){               
+                                    
+                                    $tune = DataRetriever::getTuneById($tuneId['musicId']);
+                                    
+                                    if(!empty($tune)){
+                                    
+                                echo  "<li id=\"" . $counter . "\">
+                                        <div class=\"tune-generated-id\">
+                                            " . $counter . "
                                         </div>
-                                        <div class="artist">
-                                            Calvin Harris
+                                        <div class=\"tune-details\">
+                                            <div id=\"title-" . $counter . "\" class=\"title\">
+                                              " .  $tune['title']. "
+                                            </div>
+                                            <div id=\"artist-" .$counter ."\" class=\"artist\">
+                                            " . $tune['artist'] . "
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="remove-tune">
-                                        <a class="xbutton"></a>
-                                    </div>
-                                </li>
+                                        <div class=\"remove-tune\">
+                                            <a id=\"btn-". $tune['id'] ."\" class=\"xbutton\"></a>
+                                        </div>
+                                    </li>
+                                    <script>
+                                        $(\"#".$counter."\").click(function(){
+                                            
+                                            var title = 'Song: ' + $(\"#title-".$counter."\").text();
+                                            var artist = 'By: ' + $(\"#artist-".$counter."\").text();
+                                            
+                                            $('#title-played').html(title);
+                                            $('#artist-played').html(artist);
+                                            
+                                            $('#togglebutton').removeClass('pause');
+                                            
+                                            stopAnimation();
+                                            
+                                        });
+                                        
+                                        $(\"#btn-".$counter."\").click(function(event){
+                                        
+                                            event.preventDefault();
+                                            
+                                            var decision = confirm(\"Do you really want to remove the track from your playlist?\");
+                                            
+                                            
+                                            if(decision){
+                                            var id = \"".$counter."\";
+                                            
+                                            $.ajax({
+                                            
+                                                type: \"POST\",
+                                                url: \"add-to-playlist.php\",
+                                                data: {id: id},
+                                                asynch: true,
+                                                success: function(send) {
+                                                    if(send == \"Song removed from playlist\"){
+                                                        $(\"#".$counter."\").css('display','none');
+                                                    }
+                                                    window.alert(send);
+                                                },
+                                                error: function() {
+                                                    window.alert(\"Removing from playlist is not possible right now! Try again later.\");
+                                                }
+                                            
+                                            });
+                                            }
+                                        
+                                        });
+                                    
+                                    </script>";
+                                    $counter += 1;
+                                    }
+                                  }
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="visualizer">
-
+                <div class="visualizer" id="visualizer">
                 </div>
             </div>
 
@@ -117,11 +183,19 @@
                 $('#side-menu').toggleClass('active');
 
             });
-            
-            $('#togglebutton').click(function(){
-               
+
+            $('#togglebutton').click(function() {
+
                 $('#togglebutton').toggleClass('pause');
                 
+                var isStarted = isSketchStarted();
+                if(isStarted){
+                    toggleSong();
+                }
+                else {
+                    animationStart("../../Music/Uploaded/tuneid5856fa2605e20.mpeg");
+                }
+
             });
 
             $(document).ready(function() {
