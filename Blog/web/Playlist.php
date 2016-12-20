@@ -66,6 +66,16 @@ class Playlist
         
     }
     
+    public function tuneStripFromPlaylists(){
+        
+        $query = "DELETE FROM playlist WHERE musicId = '$this->tuneId'";
+        
+        $result = $this->dbQuery($query);
+        
+        return empty($result);
+        
+    }
+    
     
     
 }

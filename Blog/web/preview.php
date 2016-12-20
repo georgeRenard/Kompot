@@ -147,10 +147,9 @@
                                                 data: {id: id},
                                                 asynch: true,
                                                 success: function(send) {
-                                                    if(send == \"Song removed from playlist\"){
+                                                    if(send == \"This track was removed from your playlist\"){
                                                         $(\"#".$counter."\").css('display','none');
                                                     }
-                                                    window.alert(send);
                                                 },
                                                 error: function() {
                                                     window.alert(\"Removing from playlist is not possible right now! Try again later.\");

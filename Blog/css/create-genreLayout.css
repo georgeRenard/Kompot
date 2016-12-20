@@ -150,8 +150,8 @@ form input {
 .side-menu {
     position: absolute;
     z-index: 9;
-    top: 70px;
-    left: 0;
+    top: 90px;
+    left: -143px;
     display: none;
     overflow: visible;
     width: 228px;

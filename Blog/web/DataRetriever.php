@@ -70,9 +70,12 @@ class DataRetriever
         
     }
     
-    public static function getGenreNames(){
+    public static function getGenreNames($query = ""){
         
-        $query = "SELECT name FROM genre";
+        if($query == ""){
+            $query = "SELECT name FROM genre";
+        }
+        
         $result = DataRetriever::dbQuery($query);
         
         return $result;
@@ -115,7 +118,7 @@ class DataRetriever
         
         $queryToExecute = "";
         
-        if($query = "none"){
+        if($query == "none"){
             $queryToExecute = "SELECT * FROM music";
         }else {
             $queryToExecute = $query;

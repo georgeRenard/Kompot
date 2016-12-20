@@ -90,7 +90,7 @@
                             //echo "</div>";
                         echo "</div>";
                     }
-                ?>
+                    ?>
                         <div class="inner">
                             <!-- Yet to be made -->
                             <ul>
@@ -100,20 +100,58 @@
                             
                             foreach($genres as $genre)
                             {
-    
-                                echo "<li class=\"\" >";
-                                    echo "<div class=\"nail\">";
-                                        echo "<img class=\"thumb\" src=\"" . $genre['wallpaper'] ."\" style=\"height:auto;\" />";
-                                    echo "<div class=\"nail\">";
+                                $wallpaper = $genre['wallpaper'];
+                                $query = "SELECT name FROM genre WHERE wallpaper = '$wallpaper'";
+                                $genresName = DataRetriever::getGenreNames($query);
                                 
+                                if(!empty($genresName)){
+                                
+                                echo "<li class=\"\" >";
+                                    echo "<div id=\"".$genresName[0]['name']."\" class=\"genreName\">";
+                                        echo "<img class=\"thumb\" src=\"" . $genre['wallpaper'] ."\" style=\"height:auto;\" />";
+                                        echo "<script>
+                                            $(document).ready(function(){
+                                            $(\"#".$genresName[0]['name']."\").click(function(){
+                                            
+                                            var genreName = \"".$genresName[0]['name']."\"
+                                            alert(genreName);
+                                            $.ajax({
+
+                                            type: \"POST\",
+                                            url: \"sortByGenre.php\",
+                                            data: {
+                                                genre: genreName
+                                            },
+                                            asynch: false,
+
+                                            success: function(event) {
+                                                if (event != \"Success\") {
+                                                    window.alert(event);
+                                                }else{
+                                                    location.reload();
+                                                }
+                                            },
+
+                                            error: function() {
+                                            window.alert(\"Service unavailable right now. Please, try again later\");
+                                            }
+                                            });
+                                        });
+                                        
+                                        });</script>";
+                                    echo "<div class=\"nail\">";
+                                    
                                 if($isAdmin){
                                     echo "<div class=\"genre-edit\" onclick=\"genreManage()\"></div>";
                                     echo "<div class=\"genre-delete\" onclick=\"genreManage()\"></div>";
-                                }
-                                echo "/div";
                                 
+                                    
+                                echo "/div";
+                                    
+                                }
                             }
-                            }
+                        }
+                    }
                         ?>
                             </ul>
                         </div>
@@ -132,7 +170,6 @@
                     require_once('musicplayer.php');
                 
                     $query = "none";    
-                
                     if(isset($_SESSION['tuneByGenre'])){
                         
                         $genre = trim($_SESSION['tuneByGenre']);
@@ -140,7 +177,8 @@
                         $genre = htmlspecialchars($genre);
                         $genre = SQLite3::escapeString($genre);
                         
-                        $query = "SELECT * FROM music WHERE genre LIKE '$genre'";
+                        $query = "SELECT * FROM music WHERE genre LIKE '%$genre%'";
+                        unset($_SESSION['tuneByGenre']);
                     }
                     
                     $tunes = DataRetriever::getTunes($query);

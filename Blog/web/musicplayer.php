@@ -48,7 +48,7 @@
                     echo "</ul>";
                     echo "</div>
                         <div class=\"tune-control\">
-                            <a id=\"delete-tune\" class=\"button-delete-tune\"><span></span></a>
+                            <a id=\"delete-tune-".$tune['id']."\" class=\"button-delete-tune\"><span></span></a>
                             <a id=\"add-to-playlist\" class=\"button-add-to-playlist\"><span id=\"add-to-playlist-span\" class=\"" . $tune['id'] ."\"></span></a>
                             <a id=\"listen\" class=\"button-listen\"><span></span></a>
                         </div>
@@ -82,15 +82,15 @@
                         }
                     });
     
-                    
+                    $(document).ready(function(){
                     $('." . $tune['id'] . "').click(function(event){
                     
                         event.preventDefault();
                         
                         var id = \"".$tune['id']."\";
-                        var confirm = confirm(\"Are you sure you want to add/remove this track from your playlist?\");
+                        var decision = confirm(\"Are you sure you want to add/remove this track from your playlist?\");
                         
-                        if(confirm){
+                        if(decision){
                     
                         $.ajax({
                         
@@ -102,7 +102,6 @@
                             if(callback != \"Service not available right now! Please, try again later.\"){
                                 $('.". $tune['id'] ."').toggleClass('added');
                             }
-                            window.alert(callback);
                         },
                         error: function() {
                         window.alert('Our service is not available at the moment. Please, try a few minutes later');
@@ -110,6 +109,45 @@
             
                         });
                         }
+                        });
+                    });
+                    
+                    $(document).ready(function(){
+                    
+                        $(\"#delete-tune-".$tune['id']."\").click(function(event){
+                        
+                            event.preventDefault();
+                            
+                            var decision = confirm(\"Do you really want to delete this track?\");
+                            
+                            if(decision){
+                            
+                                var id = \"".$tune['id']."\";
+                                
+                                $.ajax({
+                                
+                                    type: \"POST\",
+                                    url: \"delete-tune.php\",
+                                    data: {id: id},
+                                    asynch: true,
+                                    cache: false,
+                                    
+                                    success: function(callback){
+                                    
+                                        $('#player-container-".$tune['id']."').css('display','none');
+                                    
+                                    },
+                                    
+                                    error: function(){
+                                        window.alert(\"Service unavailable right now! Please, try again later.\");
+                                    }
+                                
+                                });
+                            
+                            }
+                        
+                        });
+                    
                     });
 
                 </script>";

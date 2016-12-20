@@ -50,12 +50,13 @@ class Tune
         
     }
     
-    public function remove($isAdmin=false){
+    public function remove($id,$isAdmin=false){
         
-        $query = "DELETE FROM music WHERE path = '$this->path' AND (uploaderId = '$this->uploader' OR '$isAdmin')";
+        $isAdmin = SQLite3::escapeString($isAdmin);
+        $query = "DELETE FROM music WHERE id = '$id' AND (uploaderId = '$this->uploader' OR '$isAdmin')";      
+        $result = $this->dbQuery($query);        
         
-        $this->dbQuery($query);        
-        
+        return empty($result);
     }
 
     
