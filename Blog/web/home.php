@@ -114,7 +114,7 @@
                                             $(\"#".$genresName[0]['name']."\").click(function(){
                                             
                                             var genreName = \"".$genresName[0]['name']."\"
-                                            alert(genreName);
+
                                             $.ajax({
 
                                             type: \"POST\",

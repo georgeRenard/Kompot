@@ -11,16 +11,23 @@ require_once '../PHPMailer/PHPMailerAutoload.php';
 
 function sendAuthenticationEmail($email,$name,$url){
 //Create a new PHPMailer instance
-$mail = new PHPMailer(true);
+$mail = new PHPMailer();
 
 //Tell PHPMailer to use SMTP
 $mail->isSMTP();
+$mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
 
 //Enable SMTP debugging
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-$mail->SMTPDebug = 2;
+$mail->SMTPDebug = 0;
 
 //Ask for HTML-friendly debug output
 $mail->Debugoutput = 'html';
@@ -71,9 +78,9 @@ $mail->AltBody = "Activate your account here: " . $url;
 
 //send the message, check for errors
 if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
+    return false;
 } else {
-    echo "Message sent!";
+    return true;
 }
 }
 

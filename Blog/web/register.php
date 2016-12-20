@@ -8,7 +8,6 @@
     $session::checkLogin();
     $session::isTuneAwaiting();
 
-
     if(isset($_POST['btn-submit']))
     {
         
@@ -31,19 +30,25 @@
        if(!$emailCallBack['hasError'] && !$passwordCallBack['hasError'] && !$nameCallBack['hasError']){
                
             $pendingUser = new PendingUser($user);
-            $pendingUser->initiateRegisterRequest();
+            $noError = $pendingUser->initiateRegisterRequest();
+           
+            if($noError){
         
-            $errType = "success";
-            $errorMessage = "Successfully registered, you may log-in";
-            
-            #Collecting the Garbage
-            unset($name);
-            unset($email);
-            unset($password);
-            unset($user);
-               
-            //header("Location: ../../index.php");
-            //exit;
+                $errType = "success";
+                $errorMessage = "Thank you for signing up. An activation e-mail has been sent to your mail !";
+                
+                #Collecting the Garbage
+                unset($name);
+                unset($email);
+                unset($password);
+                unset($user);
+                   
+                header("Location: ../../index.php");
+                exit;
+            }else {
+                $errType = "danger";
+                $errorMessage = "Service is unavailable right now. Please, try again later !";
+            }
                
         }else {
                
@@ -91,15 +96,32 @@
         <div id="snow"></div>
     
     <div class="wrapper">
+    <div class="callbacks">
+        <?php
+        
+        if(isset($_POST['btn-submit'])){
+          echo $errMessage;
+          echo $passwordCallBack['errorMsg'];
+          echo $emailCallBack['errorMsg'];
+          echo $nameCallBack['errorMsg'];
+        }
+        ?>
+    </div>
+    
 	<div class="container">
 		<h1>Register</h1>
 		
-		<form class="form" method="post" action="register.php" autocomplete="off">
-			 <input  pattern="^[a-z0-9_-]{6,16}$" id="user_name" placeholder="User Name" name="name"  type ="text" required>
-			<input type ="email"  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required>
-           <input type ="email"  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_emailConfirm" placeholder="Confirm Email" name="confirmEmail"  required  >
-          <input  type ="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required >
-            <input  type ="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password_confirm" placeholder="Confirm Password" name="confirmPassword" required >
+		<form class="form" autocomplete="off" method="post" action="register.php">
+         
+			 <input  pattern="^[A-Za-z\s]+{6,16}$" autocomplete="off" id="user_name" placeholder="Name" name="name"  type ="text" required>
+			 
+			<input type ="email" autocomplete="off" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required>
+          
+           <input type ="email" autocomplete="off" pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_emailConfirm" placeholder="Confirm Email" name="confirmEmail" required>
+           <input type="text" style="display:none">
+           <input type="password" style="display:none">
+          <input  autocomplete="off" type ="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required >
+            <input  autocomplete="off" type ="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password_confirm" placeholder="Confirm Password" name="confirmPassword" required >
 
             <button type="submit" id="NQMA TAKOVA OBOBOBO" name="btn-submit">Register</button>
 		</form>

@@ -1,21 +1,17 @@
 <?php
-    require_once('DataRetriever');
+    require_once('DataRetriever.php');
     date_default_timezone_set("Europe/Sofia");
     
     
     function verifyUser($token){
         
-        $pendingUser = DataRetriever::getPendingUser();
+        $pendingUser = DataRetriever::getPendingUser($token);
         
-        if(!empty($user)){
+        if(!empty($pendingUser)){
             
-            if($user['token'] == $token){
+            if($pendingUser['token'] == $token){
                 return $pendingUser;
             }
-            
-        }else{
-            
-            throw new Exception('The provided token is invalid!');
             
         }
         
@@ -29,8 +25,10 @@
         
         if($_SERVER['REQUEST_TIME'] - $timestamp > $delta){
             
-            throw new Exception('Unfortunately your token has expired. Please, try to register again');
+            return array("isExpired" => true , "message" => "Unfortunately your token has expired. Please, try to register again");
             
+        }else {
+            return array("isExpired" => false , "message" => "Congratulations! You activated your account. It's time to share some music .");
         }
         
     }

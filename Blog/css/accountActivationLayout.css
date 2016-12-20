@@ -1,0 +1,98 @@
+/* Basic HTML Tag styling */
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+html {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+@font-face {
+    font-family: "OstrichSans";
+    src: url(../fonts/Ostrich-sans/ostrich-regular.ttf);
+}
+body {
+    height: 100%;
+    background-image: url('../../backgroundWallpaper.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "OstrichSans", sans-serif;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    
+    height: 100%;
+    widows: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.message {
+    width: 40%;
+    height: 30%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "OstrichSans",sans-serif;
+    letter-spacing: 3px;
+    color: #fff;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30%;
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+    opacity: 0.7;
+    background-color: #222222;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+.header-non-user {
+    width: 100%;
+    height: 70px;
+    opacity: 0.7;
+    background-color: #222222;
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+}
+.button {
+    font-family: OstrichSans;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 8px 18px 8px 18px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: Transparent;
+    border: solid #ffffff 1px;
+    text-decoration: none;
+    outline: none;
+    margin-right: 10px;
+}
+.btn:focus,
+.btn:active {
+    outline: none !important;
+}
+.button:hover {
+    background: Transparent;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 6px rgba(232, 232, 232, 1);
+}

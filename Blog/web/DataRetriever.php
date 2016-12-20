@@ -65,7 +65,7 @@ class DataRetriever
         
         $result = DataRetriever::dbQuery($query);
         
-        return $result[0];
+        return $result;
         
         
     }

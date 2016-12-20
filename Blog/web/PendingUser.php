@@ -38,7 +38,6 @@ class PendingUser extends User
         $url = "localhost:8080/Blog/web/accountActivation.php?token=$token";
         $email = $this->user['email'];
         $name = $this->user['name'];
-        echo !extension_loaded('openssl')?"Not Available":"Available";
         $isEmailSent = sendAuthenticationEmail($email,$name,$url);
         
         if(!$isEmailSent){
@@ -55,8 +54,10 @@ class PendingUser extends User
         if(empty($result))
         {
          
-            #Code to manage dbResult error here
+            return true;
     
+        }else {
+            return false;
         }
         
     }    
