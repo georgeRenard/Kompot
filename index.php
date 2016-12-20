@@ -1,5 +1,11 @@
 <?php date_default_timezone_set("Europe/Sofia");
+    require_once('Blog/web/session.php');
+    require_once('Blog/web/DataRetriever.php');
+    require_once('Blog/web/welcome-php.php');
 
+    $session = new session();
+    $relativePath = "Music/Temp/";
+    $session::isTuneAwaiting($relativePath);
 
 ?>
     <!DOCTYPE html>
@@ -28,12 +34,27 @@
                 <div class="row" align="right">
                     <div class="col-md-12">
                         <div class="btn-toolbar">
-                            <button class="button" onclick="location.href='Blog/web/login.php'" type="button">Sign In
+                            <?php
+                             if(!isset($_SESSION['user'])){
+                            echo "<button class=\"button\" onclick=\"location.href='Blog/web/login.php'\" type=\"button\">Sign In
                             </button>
-                            <button class="button" onclick="location.href='Blog/web/register.php'" type="button">Sign Up
+                            <button class=\"button\" onclick=\"location.href='Blog/web/register.php'\" type=\"button\">Sign Up
                             </button>
-                            <button id="about" class="button" onclick="location.href='Blog/web/aboutUs.html'" type="button">About Us
-                            </button>
+                            <button id=\"about\" class=\"button\" onclick=\"location.href='Blog/web/aboutUs.html'\" type=\"button\">About Us
+                            </button>";
+                             }else{
+                                
+                                 $user = getUserById($_SESSION['user']);
+                                 if(!empty($user)){
+                                    echo "<div class=\"welcome-text\">";
+                                    echo "Welcome, " . "<a href=\"Blog/web/userAccount.php\">". $user['name'] . "</a>" . "!";
+                                    echo "</div>";
+                                 }
+                                 
+                                 $user;
+                                 
+                             }
+                            ?>
                         </div>
                     </div>
                 </div>
