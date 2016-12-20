@@ -1,10 +1,27 @@
 <?php
-     
+    require_once('session.php');
+    require_once('DataRetriever.php');
+    $session = new session();
+    
     
     function renderPlayer($tune){
         
         if(empty($tune)){
             exit;
+        }
+        
+        $isUser = isset($_SESSION['user']);
+        
+        if(!$isUser){
+            $isAdmin = false;
+        }else {
+            $isAdmin = DataRetriever::isAdmin($_SESSION['user']);
+        }
+    
+        if($isUser){
+            $isOwner = DataRetriever::isOwnerOfTune($tune['id'],$_SESSION['user']);
+        }else {
+            $isOwner = false;
         }
         
         $genres = explode(', ', $tune['genre']);
@@ -46,15 +63,21 @@
                              echo "<li><a class=\"genreTag\" href=\"#\">" . $genre . "</a></li>";
                             }
                     echo "</ul>";
+                        if($isUser){
                     echo "</div>
-                        <div class=\"tune-control\">
-                            <a id=\"delete-tune-".$tune['id']."\" class=\"button-delete-tune\"><span></span></a>
-                            <a id=\"add-to-playlist\" class=\"button-add-to-playlist\"><span id=\"add-to-playlist-span\" class=\"" . $tune['id'] ."\"></span></a>
+                        <div class=\"tune-control\">";
+                            if($isOwner || $isAdmin){
+                            echo "<a id=\"delete-tune-".$tune['id']."\" class=\"button-delete-tune\"><span></span></a>";
+                            }
+                            echo "<a id=\"add-to-playlist\" class=\"button-add-to-playlist\"><span id=\"add-to-playlist-span\" class=\"" . $tune['id'] ."\"></span></a>
                             <a id=\"listen\" class=\"button-listen\"><span></span></a>
-                        </div>
-                    </div>
-                </div>
-                <script>
+                        </div>";
+                        }
+                echo "</div>
+                </div>"; 
+                
+                    
+            echo "<script>
                     var wavesurfer" . $tune['id'] . " = WaveSurfer.create({
                         container: " . "'#waveform-" . $tune['id'] . "'" . ",
                         waveColor: '#E8E8E8',
@@ -80,9 +103,10 @@
                         }else{
                             wavesurfer" . $tune['id'] . ".play();
                         }
-                    });
-    
-                    $(document).ready(function(){
+                    });";
+                    if($isUser){
+                        
+              echo "$(document).ready(function(){
                     $('." . $tune['id'] . "').click(function(event){
                     
                         event.preventDefault();
@@ -110,9 +134,10 @@
                         });
                         }
                         });
-                    });
+                    });";
                     
-                    $(document).ready(function(){
+                    if($isAdmin || $isOwner){
+                  echo "$(document).ready(function(){
                     
                         $(\"#delete-tune-".$tune['id']."\").click(function(event){
                         
@@ -148,7 +173,9 @@
                         
                         });
                     
-                    });
-
-                </script>";
+                    });";
+                      
+                    }
+            }
+                echo "</script>";
     }

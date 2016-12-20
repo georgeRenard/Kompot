@@ -13,6 +13,8 @@
     $userId = $_SESSION['user'];
     $user = DataRetriever::getUserData($userId);
 
+    $isAdmin = DataRetriever::isAdmin($userId);
+
     if(!empty($user)){
         
         $userName = $user['name'];
@@ -112,9 +114,15 @@
                 </button>
 
                 <ul id="side-menu" class="side-menu">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.php">Home</a></li>
                     <li><a href="userAccount.php">My Profile</a></li>
-                    <li><a href="#">My Playlist</a></li>
+                    <li><a href="preview.php">My Playlist</a></li>
+                    <?php
+                        if($isAdmin){
+                            echo "<li><a href=\"create-genre.php\">Create Genre</a></li>";
+                        }
+                    ?>
+                    <li><a href="../../index.php">Back to index</a></li>
                     <li><a href="userAccount.php">Report</a></li>
                     <li><a href="logOut.php">Logout</a></li>
                 </ul>

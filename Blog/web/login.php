@@ -29,7 +29,7 @@
         
         $passwordCallBack = $credentials->isPasswordValid();  
         
-        if(filter_var($email,FILTER_VALIDATE_EMAIL) &&!$passwordCallBack['hasError'])
+        if(filter_var($email,FILTER_VALIDATE_EMAIL) && !$passwordCallBack['hasError'])
         {
             
             $result = $user->loginValidation($email,$password);
@@ -43,7 +43,7 @@
                 exit;
             }
             
-            echo "Incorrect name or password. Please, try again.";
+            $errorMsg = "Incorrect name or password!";
         }
         
     }
@@ -88,12 +88,25 @@
    <main>
        <div id="snow"></div>
     <div class="wrapper">
+    
+    <div class="callbacks">
+        <?php
+        
+            if(isset($_POST['btn-submit'])){
+                echo $errorMsg;
+            }
+        
+        ?>
+    </div>
+    
 	<div class="container">
 		<h1>Welcome</h1>
 		
 		<form class="form" method="post" action="login.php">
-			 <input  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required type="email">
-			<input type="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required>
+             <input type="password" style="display:none;">
+			 <input autocomplete="off"  pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" id="user_email" placeholder="Email" name="email" required type="email">
+            <input type="password" style="display:none;">
+			<input autocomplete="off" type="password"  pattern="^[a-zA-Z0-9_-]{6,16}$" id="user_password" placeholder="Password" name="password" required>
 			<button type="submit" id="login-button" name="btn-submit">Login</button>
            
             

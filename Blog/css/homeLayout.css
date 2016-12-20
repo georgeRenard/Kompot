@@ -198,38 +198,17 @@ img.thumb {
 
 /* Player Media ReSIZE */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 645px) {
     .player {
         width: 540px;
     }
 }
 @media only screen and (max-width: 640px) {
-    .player {
-        width: 500px;
+    .player-container{
+        width: 100%;
     }
-}
-@media only screen and (max-width: 554px) {
     .player {
-        width: 400px;
-        height: 120px;
-    }
-}
-@media only screen and (max-width: 405px) {
-    .player {
-        width: 320px;
-        height: 110px;
-    }
-}
-@media only screen and (max-width: 310px) {
-    .player {
-        width: 240px;
-        height: 100px;
-    }
-}
-@media only screen and (max-width: 245px) {
-    .player {
-        width: 200px;
-        height: 80px;
+        width: 100%;
     }
 }
 
@@ -723,6 +702,33 @@ a:active {
     animation: popover 0.3s ease-in-out;
     line-height: 1.5;
 }
+
+@media only screen and (max-width: 1024px){
+    
+    .side-menu {
+        z-index: 9999;
+        background: rgba(22,22,22,1);
+    }
+    
+    .genre-slider {
+        
+        z-index: -1;
+        
+    }
+    #thumbnail-slider {
+        
+        z-index: -1;
+        
+    }
+    
+    .player-container {
+        
+        z-index: -1;
+        
+    }
+    
+}
+
 .side-menu li:first-child {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;

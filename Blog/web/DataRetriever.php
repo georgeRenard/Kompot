@@ -151,6 +151,19 @@ class DataRetriever
         return $result[0];
         
     }
+    
+    public static function isOwnerOfTune($id,$uploader){
+        
+        $id = SQLite3::escapeString($id);
+        $uploader = SQLite3::escapeString($uploader);
+        
+        $query = "SELECT * FROM music WHERE id = '$id' AND uploaderId = '$uploader'";
+        
+        $result = DataRetriever::dbQuery($query);
+        
+        return !empty($result);
+        
+    }
 
 
 }
