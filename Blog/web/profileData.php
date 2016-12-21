@@ -45,12 +45,13 @@
         <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Register Test</title>
+        <title>User Data</title>
 
         <link type="text/css" rel="stylesheet" href="../css/bootstrap.css">
         <link type="text/css" rel="stylesheet" href="../css/callbacks.css">
         <link type="text/css" rel="stylesheet" href="../css/hide-scale-form.css">
         <link type="text/css" rel="stylesheet" href="../css/registerLayout.css">
+          <link type="text/css" rel="stylesheet" href="../css/profileData.css">
 
         <script type="text/jscript" href="../scripts/bootstrap.js"></script>
         <script type="text/jscript" href="../scripts/jquery-3.1.1.js"></script>
@@ -111,11 +112,12 @@
             </div>
         </main>
 
-        <footer>
-
-
-
-        </footer>
+    
+     <footer>
+              
+            </footer>
+    
+  
 
     </body>
     
