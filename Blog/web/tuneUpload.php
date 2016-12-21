@@ -263,7 +263,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="links"><a href="aboutUs.html">About Us</a> | <a href="#">Music</a> | <a href="policy.html">Privacy Policy</a>| <a href="contact.html">Contact</a>| <a href="http://adidas.com">Adidas</a></p>
+                <p class="links"><a href="aboutUs.html">About Us</a> | <a href="home.php">Music</a> | <a href="policy.html">Privacy Policy</a>| <a href="contact.html">Contact</a>| <a href="http://adidas.com">Adidas</a></p>
                 <p class="copyright">&copy; 2042 Kompot of Rhytms. All rights reserved. Made with Suka by TRUE SLAVS |||</p>
                 <p class="copyright">We do not own any of the rights regarding the music we post. It's only for entertainment purposes! True Slavs |||</p>
             </div>

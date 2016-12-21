@@ -51,7 +51,8 @@
                             echo "<li><a href=\"preview.php\">My Playlist</a>";
                             echo "<li><a href=\"tuneUpload.php\">Upload Tune</a>";
                             if($isAdmin){
-                            echo "<li><a href=\"genre-create\">Create Genre</a>";
+                            echo "<li><a href=\"create-genre.php\">Create Genre</a>";
+                                echo "<li><a href=\"list-users.php\">Admin Panel</a>";
                             }
                             echo "<li><a href=\"../../index.php\">Back to index</a>";
                             echo "<li><a href=\"logOut.php\">Log Out</a>";

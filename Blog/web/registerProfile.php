@@ -108,7 +108,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-4">
-                                    <a class="btn btn-default" href="index.html">Cancel</a>
+                                    <a class="btn btn-default" href="../../index.php">Cancel</a>
                                     <button type="submit" class="btn btn-primary" name="btn-submit">Register</button>
                                 </div>
                             </div>
