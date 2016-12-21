@@ -47,7 +47,7 @@
                                  $user = getUserById($_SESSION['user']);
                                  if(!empty($user)){
                                     echo "<div class=\"welcome-text\">";
-                                    echo "Welcome, " . "<a href=\"Blog/web/userAccount.php\">". $user['name'] . "</a>" . "!";
+                                    echo "Welcome, " . "<a href=\"Blog/web/userAccount.php\">". $user['name'] . "!</a>" ;
                                     echo "</div>";
                                  }
                                  

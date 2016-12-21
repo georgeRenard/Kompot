@@ -228,7 +228,8 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration:underline;
+   
 }
 
 a:-webkit-any-link {
@@ -370,4 +371,8 @@ a:-webkit-any-link {
 
 .welcome-text > a {
     color: #fff;
+     text-decoration:none;
+}
+.welcome-text >a:hover{
+    color: rgba(249, 180, 31,1);
 }
